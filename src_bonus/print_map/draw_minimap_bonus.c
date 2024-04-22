@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:49:38 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/18 15:38:30 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:51:44 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
 
-void	display_border(int start_x, int start_y, int size, mlx_image_t *img, uint32_t color)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (x <= size)
-	{
-		while (y <= size)
-		{
-			if ((y == 0 || y == size) || (x == 0 || x == size))
-				put_pixel(img, start_x + x, start_y + y, color);
-			y++;
-		}
-		y = 0;
-		x++;
-	}
-	
-}
-
-void	display_square(int start_x, int start_y, int size, mlx_image_t *img, uint32_t color, t_bool border)
+void	display_square(int start_x, int start_y, int size, mlx_image_t *img, uint32_t color)
 {
 	int x;
 	int y;
@@ -50,8 +29,6 @@ void	display_square(int start_x, int start_y, int size, mlx_image_t *img, uint32
 		y = 0;
 		x++;
 	}
-	if (border == TRUE)
-		display_border(start_x, start_y, size, img, convert_color(0x000000));
 }
 
 void print_minimap(t_map *minimap, mlx_image_t *img, t_player *p)
@@ -61,27 +38,27 @@ void print_minimap(t_map *minimap, mlx_image_t *img, t_player *p)
 	int	i;
 	int	j;
 	int size = 10;
-	int	a = 9;
+	//int	a = 9;
 	
 	i = 0;
 	j = 0;
-	x = p->pos_x - 5;
-	y = p->pos_y - 5;
-	size = 15;
-	while (i < a * size)
+	x = p->pos_x - 5;//(MINIMAP_SQR_NB / 2 + 1);
+	y = p->pos_y - 5;//(MINIMAP_SQR_NB / 2 + 1);
+	size = MINIMAP_SIZE / 9;
+	while (i < MINIMAP_SIZE)
 	{
-		while (j < a * size)
+		while (j < MINIMAP_SIZE)
 		{
 			if (((int)round(x) >= 0 && (int)round(x) < minimap->w_map) && ((int)round(y) >= 0 && (int)round(y) < minimap->h_map))
 			{
 				if (minimap->map2d[(int)round(y)][(int)round(x)] == '1')
-					put_pixel(img, j, i, convert_color(0xA09C9C)); //display_square(j * size, i * size, size, set->minimap_img, convert_color(0x00D7FF), TRUE );
+					put_pixel(img, j, i, convert_color(0xA09C9C));
 				else if (minimap->map2d[(int)round(y)][(int)round(x)] == '0')
-					put_pixel(img, j, i, convert_color(0xFFFFFF));//display_square(j * size, i * size, size, set->minimap_img,convert_color(0xFFCF00), TRUE );
-				else if (minimap->map2d[(int)round(y)][(int)round(x)] == 'N')
-					put_pixel(img, j, i, convert_color(0xFFFFFF));//display_square(j * size, i * size, size, set->minimap_img, convert_color(0x00D7FF), TRUE);
+					put_pixel(img, j, i, convert_color(0xFFFFFF));
+				else if (ft_strchr("NSEW", minimap->map2d[(int)round(y)][(int)round(x)]) != 0)
+					put_pixel(img, j, i, convert_color(0xFFFFFF));
 				else
-					put_pixel(img, j, i, convert_color(0xA09C9C));//display_square(j * size, i * size, size, set->minimap_img, convert_color(0x000000), FALSE);
+					put_pixel(img, j, i, convert_color(0xA09C9C));
 			}		
 			else
 				put_pixel(img, j, i, convert_color(0xA09C9C));
@@ -93,8 +70,7 @@ void print_minimap(t_map *minimap, mlx_image_t *img, t_player *p)
 		j = 0;
 		i++;
 	}
-	display_square((135 / 2) - 2, (135 / 2) - 2, 5, img, convert_color(0x000000), FALSE);
-
+	display_square((MINIMAP_SIZE / 2) - 2, (MINIMAP_SIZE / 2) - 2, 5, img, convert_color(0x000000));
 }
 
 void display_minimap(t_params *p)

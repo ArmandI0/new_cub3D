@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_sprites_bonus.c                               :+:      :+:    :+:   */
+/*   load_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:53:42 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:39:29 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D_bonus.h"
+#include "../../includes/cub3D.h"
 
 static int	count_nb_sprites(char **map2d)
 {
@@ -25,7 +25,7 @@ static int	count_nb_sprites(char **map2d)
 		x = 0;
 		while (map2d[y][x] != 0)
 		{
-			if (ft_strchr("X", map2d[y][x]) != 0)
+			if (ft_strchr("S", map2d[y][x]) != 0)
 				(nb_sprites)++;
 			x++;
 		}
@@ -51,7 +51,7 @@ static void	record_sprites_pos(t_params *game, int nb_sprites, char **map2d)
 		x = 0;
 		while (map2d[y][x] != 0)
 		{
-			if (ft_strchr("X", map2d[y][x]) != 0 && i < nb_sprites)
+			if (ft_strchr("S", map2d[y][x]) != 0 && i < nb_sprites)
 			{
 				game->sprites.pos_x[i] = x;
 				game->sprites.pos_y[i] = y;
@@ -68,7 +68,7 @@ t_bool	load_sprites(t_params *game)
 	mlx_t			*mlx;
 
 	mlx = game->win->window;
-	tmp[0] = mlx_load_png("sprites/spaghettis_500x500.png");
+	tmp[0] = mlx_load_png("sprites/spaghettis.png");
 	if (tmp[0])
 	{
 		game->sprites.img[0] = mlx_texture_to_image(mlx, tmp[0]);
@@ -80,7 +80,6 @@ t_bool	load_sprites(t_params *game)
 		return (FALSE);
 	}
 	game->sprites.nb_sprites = count_nb_sprites(game->map->map2d);
-	game->sprites.nb_remaining = game->sprites.nb_sprites;
 	record_sprites_pos(game, game->sprites.nb_sprites, game->map->map2d);
 	return (TRUE);
 }

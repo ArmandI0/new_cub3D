@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   anim_hands_bonus.c                                 :+:      :+:    :+:   */
+/*   display_sprites.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:52:54 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/19 16:04:34 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D_bonus.h"
+#include "../../includes/cub3D.h"
 
-void	display_hands(t_params *game)
+void	draw_sprites(double	dist_buffer[WIDTH], t_sprites sprites, t_player *p)
 {
-	static int	frame = 1;
-	int			tot_frames;
-	mlx_image_t *img;
-	int			x;
-	int			y;
-
-	img = game->anim_p[game->anim_p_pattern[frame]];
-	tot_frames = game->anim_p_pattern[0];
-	y = HEIGHT - img->height;
-	x = (WIDTH - img->width) / 2;
-	mlx_image_to_window(game->win->window, img, x, y);
-	frame++;
-	if (frame > tot_frames)
-		frame = 1;
+	(void)dist_buffer;
+	(void)sprites;
+	(void)p;
+/* 	int	i;
+	
+	i = 0;
+	while (i < sprites.nb_sprites)
+	{
+		spriteOrder[i] = i;
+		sprite_dist[i] = ((p->pos_x - sprite[i].x) * (p->pos_x - sprite[i].x) + (p->pos_y - sprite[i].y) * (p->pos_y - sprite[i].y));
+		i++;
+	} */
 }

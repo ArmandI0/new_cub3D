@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/21 17:24:08 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:28:35 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # include <sys/time.h>
 # define WIDTH 1024
 # define HEIGHT 720
+/* minimap settings*/
+# define MINIMAP_SIZE 135
+# define MINIMAP_SQR_SIZE 15
+# define MINIMAP_SQR_NB 9
+/* game settings */
+# define SPEED 0.1
+# define SENSIVITY 3
 # define EAST_WEST 0
 # define NORTH_SOUTH 1
 
@@ -173,6 +180,11 @@ t_bool		is_line_empty(t_list *last);
 t_bool		map_to_tab(t_params *game, t_list *head);
 t_bool		check_walls(t_params *game);
 t_bool		load_images(t_params *game);
+t_bool		load_sprites(t_params *game);
+
+
+/* EXEC FUNCTIONS */
+
 
 /* SPRITES FUNCTIONS */
 t_bool		load_sprites(t_params *game);
@@ -191,6 +203,13 @@ void		close_fct(void *param);
 t_map *		init_argument(void); // init the data structure
 void 		display_minimap(t_params *p);
 void		ft_error(t_window_settings *set);
+void		print_player(t_params *p);
+t_player	*init_new_players(t_param_type direction, double x, double y);
+void		display_hands(t_params *game);
+void		display_sprites(t_params *game);
+void		del_txt_tmp(mlx_texture_t **tmp, int nb);
+void		draw_ver_line(t_params *game, t_var_raycasting *var, int x_position,  int side);
+void		draw_sprites(double	dist_buffer[WIDTH], t_sprites sprites, t_player *p);
 void		display_square(int start_x, int start_y, int size, mlx_image_t *img, uint32_t color, t_bool border);
 void		print_player(t_params *p);
 t_player	*init_new_players(t_param_type direction, double x, double y);
@@ -221,6 +240,7 @@ void	cursor_fct(double xpos, double ypos, void *param);
 void	init_command(t_params *game);
 void	exit_fct(t_params *param);
 void	rotation(t_params *p, double step);
+t_bool  raycasting_1(t_params *game, t_window_settings *set, t_player *p);
 mlx_image_t	*set_img(t_window_settings *set);
 int		rgb_to_int(unsigned char red, unsigned char green, unsigned char blue);
 int		get_color_px_txt(uint32_t x, uint32_t y, mlx_texture_t *txt);

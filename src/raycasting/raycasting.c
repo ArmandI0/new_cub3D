@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/19 15:53:57 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:30:37 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p)
 			var.perp_dist = (var.side_dist_y - var.dt_y);
 		h_line = (int)(HEIGHT / var.perp_dist);
 		set_start_and_end(&var, h_line);
+		dist_buffer[i] = var.perp_dist;
 		draw_ver_line(game, &var, i, side);
 		i++;
 	}

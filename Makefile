@@ -6,7 +6,7 @@
 #    By: aranger <aranger@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 17:54:43 by nledent           #+#    #+#              #
-#    Updated: 2024/04/20 13:36:17 by aranger          ###   ########.fr        #
+#    Updated: 2024/04/22 15:26:36 by aranger          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,15 @@ SRCS			= 	\
 					utils/check_args.c \
 					utils/print_errors.c \
 					utils/free_functions.c \
+					utils/free_functions2.c \
 					utils/colors.c \
 					utils/utils.c \
 					utils/utils_lst.c \
 					utils/exit_fct.c \
+					sprites/anim_init.c \
+					sprites/anim_hands.c \
+					sprites/display_sprites.c \
+					sprites/load_sprites.c \
 					print_map/draw_minimap.c \
 					print_map/minimap_player.c \
 					raycasting/init_player.c \
