@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_player.c                                   :+:      :+:    :+:   */
+/*   minimap_player_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:20:30 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/17 16:21:24 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:01:09 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	print_player(t_params *p)
 	img = mlx_new_image(win->window, 50, 50);
 	if (!img || (mlx_image_to_window(win->window, img, p->player->pos_x * 10, p->player->pos_y * 10) < 0))
 		ft_error(win);
-	display_square(0, 0, 10,img, convert_color(0xFF0000), FALSE);
+	display_square(0, 0, 10,img, convert_color(0xFF0000));
 	win->player_img = img;
 }

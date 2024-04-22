@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_info.c                                     :+:      :+:    :+:   */
+/*   display_info_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/21 17:26:23 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:44:17 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_times_displays(t_params *game)
 	game->times.start_game = time_to_ms();
 	game->times.one_min = 0;
 	game->times.dead = FALSE;
-	game->times.time_given = 1000 * 60 * 2;
+	game->times.time_given = 1000 * 60 * 10;
 }
 
 static void	display_sphagetti_eaten(t_sprites sprites, mlx_t *mlx, u_int64_t *time)

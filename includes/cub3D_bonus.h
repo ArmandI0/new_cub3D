@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:28:35 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:00:59 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,8 +209,7 @@ void		display_hands(t_params *game);
 void		display_sprites(t_params *game);
 void		del_txt_tmp(mlx_texture_t **tmp, int nb);
 void		draw_ver_line(t_params *game, t_var_raycasting *var, int x_position,  int side);
-void		draw_sprites(double	dist_buffer[WIDTH], t_sprites sprites, t_player *p);
-void		display_square(int start_x, int start_y, int size, mlx_image_t *img, uint32_t color, t_bool border);
+void		display_square(int start_x, int start_y, int size, mlx_image_t *img, uint32_t color);
 void		print_player(t_params *p);
 t_player	*init_new_players(t_param_type direction, double x, double y);
 void		del_txt_tmp(mlx_texture_t **tmp, int nb);

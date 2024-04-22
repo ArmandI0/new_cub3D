@@ -1,25 +1,18 @@
 
 #include "../../includes/cub3D_bonus.h"
 
-/* if tr = FASLSE translate forward else translate R or L*/
-
 void	rotation(t_params *p, double step)
 {
 	rotate_player(p->player, step);
-	if (raycasting(p, p->win, p->player) == FALSE)
-		exit_fct(p);
 	display_all(p);
 }
 
-/* if tr = FASLSE translate forward else translate R or L*/
 static void translation(t_params *p, double step, t_bool tr)
 {
 	if (tr == FALSE)
 		translate_player_forward(p->player, step, p->map->map2d);
 	else
 		translate_player_l_to_r(p->player, step, p->map->map2d);
-	if (raycasting(p, p->win, p->player) == FALSE)
-		exit_fct(p);
 	remove_sprite_collision(p->player, p->sprites, p);	
 	display_all(p);
 }

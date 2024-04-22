@@ -3,34 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/19 15:54:23 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:16:34 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-=======
-/*   Updated: 2024/04/21 17:24:08 by nledent          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
->>>>>>> main
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/src/libft.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
-<<<<<<< HEAD
-=======
-# include <sys/time.h>
->>>>>>> main
 # define WIDTH 1024
 # define HEIGHT 720
 # define EAST_WEST 0
@@ -46,11 +33,6 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-<<<<<<< HEAD
-	//int		w_map;
-//	int		h_map;
-=======
->>>>>>> main
 }			t_player;
 
 typedef struct s_window_settings
@@ -129,7 +111,6 @@ typedef struct s_startpoint
 	t_param_type	dir;
 }		t_startpoint;
 
-<<<<<<< HEAD
 typedef struct s_sprites
 {
 	mlx_image_t	*img[2];
@@ -137,7 +118,6 @@ typedef struct s_sprites
 	int			*pos_x;
 	int			*pos_y;
 }		t_sprites;
-=======
 typedef struct s_display
 {
 	u_int64_t	spagh_eaten;
@@ -146,7 +126,6 @@ typedef struct s_display
 	u_int64_t	start_game;
 	u_int64_t	time_given;
 }		t_display;
->>>>>>> main
 
 typedef struct s_params
 {
@@ -156,20 +135,14 @@ typedef struct s_params
 	int			nb_map_lines;
 	char		*path_texture[4];
 	mlx_texture_t	*texture[4];
-<<<<<<< HEAD
 	mlx_image_t	*anim_p[5];
 	t_sprites	sprites;
 	int			anim_p_pattern[9];
-=======
->>>>>>> main
 	int			ceiling_color;
 	int			floor_color;
 	t_list		*head_list_lines;
 	t_startpoint	start_p;
-<<<<<<< HEAD
-=======
 	t_display	times;
->>>>>>> main
 }			t_params;
 
 /* PARSING FUNCTIONS */
@@ -185,16 +158,13 @@ t_bool		is_line_empty(t_list *last);
 t_bool		map_to_tab(t_params *game, t_list *head);
 t_bool		check_walls(t_params *game);
 t_bool		load_images(t_params *game);
-<<<<<<< HEAD
 t_bool		load_sprites(t_params *game);
 
 
 /* EXEC FUNCTIONS */
 
-=======
 
 /* EXEC FUNCTIONS */
->>>>>>> main
 void		my_keyhook(mlx_key_data_t keydata, void *param);
 void		resize_mlx(int32_t width, int32_t height, void *param);
 void		put_pixel(mlx_image_t *img, uint32_t x,
@@ -206,27 +176,21 @@ void		ft_error(t_window_settings *set);
 void		display_square(int start_x, int start_y, int size, mlx_image_t *img, uint32_t color, t_bool border);
 void		print_player(t_params *p);
 t_player	*init_new_players(t_param_type direction, double x, double y);
-<<<<<<< HEAD
 void		display_hands(t_params *game);
 void		display_sprites(t_params *game);
 void		del_txt_tmp(mlx_texture_t **tmp, int nb);
 void		draw_ver_line(t_params *game, t_var_raycasting *var, int x_position,  int side);
 void		draw_sprites(double	dist_buffer[WIDTH], t_sprites sprites, t_player *p);
-=======
 void		del_txt_tmp(mlx_texture_t **tmp, int nb);
 void		draw_ver_line(t_params *game, t_var_raycasting *var, int x_position,  int side);
->>>>>>> main
 
 /* FREE FUNCTIONS */
 void	free_game(t_params *game);
 void	free_path_textures(t_params *game);
 void	free_el_list(t_list *element);
 void	free_textures(t_params *game);
-<<<<<<< HEAD
 void	free_img_anim(t_params *game);
 void	free_img_sprites(t_params *game);
-=======
->>>>>>> main
 
 /* RAY CASTING FUNCTIONS*/
 t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p);
@@ -244,21 +208,15 @@ void	cursor_fct(double xpos, double ypos, void *param);
 void	init_command(t_params *game);
 void	exit_fct(t_params *param);
 void	rotation(t_params *p, double step);
-<<<<<<< HEAD
 t_bool  raycasting_1(t_params *game, t_window_settings *set, t_player *p);
-=======
->>>>>>> main
 mlx_image_t	*set_img(t_window_settings *set);
 int		rgb_to_int(unsigned char red, unsigned char green, unsigned char blue);
 int		get_color_px_txt(uint32_t x, uint32_t y, mlx_texture_t *txt);
 uint32_t	convert_color(unsigned int color);
-<<<<<<< HEAD
-=======
 int		get_color_px_img(uint32_t x, uint32_t y, mlx_image_t *img);
 u_int64_t	time_to_ms(void);
 
 /* DISPLAY FUNCTIONS */
 void	display_all(t_params *game);
->>>>>>> main
 
 #endif
