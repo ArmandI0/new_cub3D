@@ -6,12 +6,11 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/19 16:19:04 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:47:31 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
-
 
 t_bool	is_line_empty(t_list *last)
 {
@@ -69,7 +68,7 @@ static t_bool are_map_lines_valid(t_list *head)
 		i = 0;
 		while (element->content[i] != 0)
 		{
-			if (ft_strchr("10 NSEW\n", element->content[i]) == 0)
+			if (ft_strchr("10 NSEWX\n", element->content[i]) == 0)
 				return (FALSE);
 			i++;
 		}

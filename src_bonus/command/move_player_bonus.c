@@ -6,12 +6,11 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:16:09 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/21 14:25:36 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:46:38 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
-
 
 void rotate_player(t_player *player, double angle)
 {

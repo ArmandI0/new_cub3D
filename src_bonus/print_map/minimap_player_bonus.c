@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   anim_hands_bonus.c                                 :+:      :+:    :+:   */
+/*   minimap_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:52:54 by aranger          ###   ########.fr       */
+/*   Created: 2024/04/09 11:20:30 by aranger           #+#    #+#             */
+/*   Updated: 2024/04/17 16:21:24 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
 
-void	display_hands(t_params *game)
+void	print_player(t_params *p)
 {
-	static int	frame = 1;
-	int			tot_frames;
-	mlx_image_t *img;
-	int			x;
-	int			y;
-
-	img = game->anim_p[game->anim_p_pattern[frame]];
-	tot_frames = game->anim_p_pattern[0];
-	y = HEIGHT - img->height;
-	x = (WIDTH - img->width) / 2;
-	mlx_image_to_window(game->win->window, img, x, y);
-	frame++;
-	if (frame > tot_frames)
-		frame = 1;
+	mlx_image_t			*img;
+	t_window_settings	*win;
+	
+	win = p->win;
+	img = mlx_new_image(win->window, 50, 50);
+	if (!img || (mlx_image_to_window(win->window, img, p->player->pos_x * 10, p->player->pos_y * 10) < 0))
+		ft_error(win);
+	display_square(0, 0, 10,img, convert_color(0xFF0000), FALSE);
+	win->player_img = img;
 }

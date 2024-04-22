@@ -6,12 +6,11 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:16:32 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/19 16:19:07 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:54:43 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
-
 
 static void	print_error2(t_errors error)
 {

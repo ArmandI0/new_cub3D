@@ -6,12 +6,11 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/19 16:19:05 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:52:05 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
-
 
 static t_param_type	choose_texture(t_player *player,
 	t_var_raycasting *var, int side)

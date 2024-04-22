@@ -6,12 +6,11 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/19 16:19:03 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:46:55 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
-
 
 static t_bool	check_all_wall_around(char **map, int i, int j)
 {
@@ -42,7 +41,7 @@ static t_bool	check_if_missing_wall(char **map)
 		j = 0;
 		while (map[i][j] != 0)
 		{
-			if (ft_strchr("0NSEW", map[i][j]) != 0)
+			if (ft_strchr("X0NSEW", map[i][j]) != 0)
 			{
 				if (check_all_wall_around(map, i, j) == FALSE)
 					return (TRUE);

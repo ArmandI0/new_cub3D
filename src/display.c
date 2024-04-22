@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   anim_hands_bonus.c                                 :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:52:54 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/21 17:05:01 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D_bonus.h"
+#include "../includes/cub3D.h"
 
-void	display_hands(t_params *game)
+void	display_all(t_params *game)
 {
-	static int	frame = 1;
-	int			tot_frames;
-	mlx_image_t *img;
-	int			x;
-	int			y;
-
-	img = game->anim_p[game->anim_p_pattern[frame]];
-	tot_frames = game->anim_p_pattern[0];
-	y = HEIGHT - img->height;
-	x = (WIDTH - img->width) / 2;
-	mlx_image_to_window(game->win->window, img, x, y);
-	frame++;
-	if (frame > tot_frames)
-		frame = 1;
+	if (raycasting(game, game->win, game->player) == FALSE)
+		exit_fct(game);
 }

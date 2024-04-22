@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/19 15:53:57 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:30:37 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p)
 	int 	side;
 	int		h_line;
 	t_var_raycasting var;
-	double	dist_buffer[WIDTH];
 
 	i = 0;
 	while (i < WIDTH)
@@ -111,7 +110,6 @@ t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p)
 		draw_ver_line(game, &var, i, side);
 		i++;
 	}
-	draw_sprites(dist_buffer, game->sprites, game->player);
 	mlx_image_to_window(set->window, set->img, 0, 0);
 	return (TRUE);
 }

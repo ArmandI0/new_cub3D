@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ver_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/19 15:06:47 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:29:55 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,25 @@ static int	get_x_on_texture(t_var_raycasting *var, uint32_t width, int side, t_p
 		|| (side == NORTH_SOUTH && var->ray_dir_y < 0))
 		x_txt = width - x_txt - 1; 
 	return (x_txt);
+}
+
+static t_bool	load_textures(t_params *game)
+{
+	game->texture[PARAM_NO] = mlx_load_png(game->path_texture[PARAM_NO]);
+	game->texture[PARAM_SO] = mlx_load_png(game->path_texture[PARAM_SO]);
+	game->texture[PARAM_EA] = mlx_load_png(game->path_texture[PARAM_EA]);
+	game->texture[PARAM_WE] = mlx_load_png(game->path_texture[PARAM_WE]);
+	if (!game->texture[PARAM_NO] || !game->texture[PARAM_EA]
+		|| !game->texture[PARAM_SO] || !game->texture[PARAM_WE])
+		return (FALSE);
+	return (TRUE);
+}
+
+t_bool	load_images(t_params *game)
+{
+	if (load_textures(game) == FALSE)
+		return (FALSE);
+	return (TRUE);
 }
 
 void	draw_ver_line(t_params *game, t_var_raycasting *var, int x_position,  int side)

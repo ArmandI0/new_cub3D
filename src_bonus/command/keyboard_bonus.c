@@ -8,9 +8,10 @@ void	rotation(t_params *p, double step)
 	rotate_player(p->player, step);
 	if (raycasting(p, p->win, p->player) == FALSE)
 		exit_fct(p);
-	display_minimap(p);
-	display_hands(p);
+	display_all(p);
 }
+
+/* if tr = FASLSE translate forward else translate R or L*/
 static void translation(t_params *p, double step, t_bool tr)
 {
 	if (tr == FALSE)
@@ -19,8 +20,8 @@ static void translation(t_params *p, double step, t_bool tr)
 		translate_player_l_to_r(p->player, step, p->map->map2d);
 	if (raycasting(p, p->win, p->player) == FALSE)
 		exit_fct(p);
-	display_minimap(p);	
-	display_hands(p);
+	remove_sprite_collision(p->player, p->sprites, p);	
+	display_all(p);
 }
 
 static void	translation_key(mlx_key_data_t	keydata, void *param)

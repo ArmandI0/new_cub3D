@@ -6,7 +6,7 @@
 #    By: aranger <aranger@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 17:54:43 by nledent           #+#    #+#              #
-#    Updated: 2024/04/20 13:36:17 by aranger          ###   ########.fr        #
+#    Updated: 2024/04/22 15:26:36 by aranger          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ HEADERS			= -I ./include -I $(LIBMLX)/include
 
 SRCS			= 	\
 					main.c \
+					display.c \
 					map_parsing/parsing.c \
 					map_parsing/extract_textures_path.c \
 					map_parsing/extract_colors_data.c \
@@ -69,35 +70,40 @@ D_OBJS			= mkdir -p $(@D)
 #-BONUS-#
 
 SRCS_BONUS		=	\
-					command/command_bonus.c \
-					command/keyboard_bonus.c \
-					command/mouse_bonus.c \
-					command/move_player_bonus.c \
-					map_parsing/check_walls_bonus.c \
+					main_bonus.c \
+					display_bonus.c \
+					map_parsing/parsing_bonus.c \
+					map_parsing/extract_textures_path_bonus.c \
 					map_parsing/extract_colors_data_bonus.c \
 					map_parsing/extract_file_bonus.c \
 					map_parsing/extract_map_bonus.c \
-					map_parsing/extract_textures_path_bonus.c \
-					map_parsing/map_to_tab_bonus.c \
-					map_parsing/parsing_bonus.c \
 					map_parsing/rgb_to_int_bonus.c \
-					print_map/draw_minimap_bonus.c \
-					raycasting/draw_ver_line_bonus.c \
-					raycasting/init_player_bonus.c \
-					raycasting/raycasting_bonus.c \
-					sprites/anim_hands_bonus.c \
-					sprites/anim_init_bonus.c \
-					sprites/display_sprites_bonus.c \
-					sprites/load_sprites_bonus.c \
+					map_parsing/map_to_tab_bonus.c \
+					map_parsing/check_walls_bonus.c \
 					utils/check_args_bonus.c \
-					utils/colors_bonus.c \
-					utils/exit_fct_bonus.c \
+					utils/print_errors_bonus.c \
 					utils/free_functions_bonus.c \
 					utils/free_functions2_bonus.c \
-					utils/print_errors_bonus.c \
+					utils/colors_bonus.c \
 					utils/utils_bonus.c \
 					utils/utils_lst_bonus.c \
-					main_bonus.c \
+					utils/exit_fct_bonus.c \
+					utils/display_info_bonus.c \
+					sprites/anim_init_bonus.c \
+					sprites/anim_hands_bonus.c \
+					sprites/display_sprites_bonus.c \
+					sprites/coord_sprite_bonus.c \
+					sprites/load_sprites_bonus.c \
+					sprites/collision_sprites.c \
+					print_map/draw_minimap_bonus.c \
+					print_map/minimap_player_bonus.c \
+					raycasting/init_player_bonus.c \
+					raycasting/draw_ver_line_bonus.c \
+					raycasting/raycasting_bonus.c \
+					command/keyboard_bonus.c \
+					command/mouse_bonus.c \
+					command/command_bonus.c \
+					command/move_player_bonus.c \
 
 SRC_BONUS		= $(addprefix src_bonus/, $(SRCS_BONUS))
 OBJS_BONUS		= $(SRC_BONUS:$(SRC_BONUS_DIR)/%.c=$(OBJ_BONUS_DIR)/%.o)
