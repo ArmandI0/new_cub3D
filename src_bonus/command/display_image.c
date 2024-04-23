@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:30:31 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 14:36:06 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:10:58 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	display_game(void *params)
 {
-	t_params	*game;
+	t_params		*game;
 	static size_t	start_time = 0;
 	size_t			time;
 
