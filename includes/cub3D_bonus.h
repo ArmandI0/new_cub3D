@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 16:29:47 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 20:56:40 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define MINIMAP_SQR_SIZE 15
 # define MINIMAP_SQR_NB 9
 /* game settings */
-# define SPEED 0.1
+# define SPEED 0.03
 # define SENSIVITY 2
 # define EAST_WEST 0
 # define NORTH_SOUTH 1
@@ -165,6 +165,10 @@ typedef struct s_params
 	t_list		*head_list_lines;
 	t_startpoint	start_p;
 	t_display	times;
+	t_bool		w_key;
+	t_bool		a_key;
+	t_bool		s_key;
+	t_bool		d_key;
 }			t_params;
 
 /* PARSING FUNCTIONS */
@@ -250,6 +254,10 @@ void	init_times_displays(t_params *game);
 size_t	get_current_time(void);
 void	display_game(void *params);
 void	manage_door(t_params *p);
+void	move_player(void *params);
+void	translation(t_params *p, double step, t_bool tr);
+
+
 
 
 /* DISPLAY FUNCTIONS */
