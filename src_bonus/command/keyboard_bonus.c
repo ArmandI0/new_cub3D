@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:12:00 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 17:12:43 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 20:07:09 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static void	translation_key(mlx_key_data_t	keydata, void *param)
 	t_params	*p;
 
 	p = param;
-	if (keydata.key == MLX_KEY_W && (keydata.action == MLX_REPEAT
-			|| keydata.action == MLX_PRESS))
+	if (keydata.key == MLX_KEY_W) //&& (keydata.action == MLX_REPEAT
+	{		//|| keydata.action == MLX_PRESS))
 		translation(p, SPEED, FALSE);
+	}
 	if (keydata.key == MLX_KEY_S && (keydata.action == MLX_REPEAT
 			|| keydata.action == MLX_PRESS))
 		translation(p, -SPEED, FALSE);
