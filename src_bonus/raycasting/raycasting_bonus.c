@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 16:02:49 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 11:12:01 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p)
 	draw_sprites(dist_buffer, game->sprites, game->player, game->win);
 	mlx_delete_image(set->window, img);
 	mlx_image_to_window(set->window, set->img, 0, 0);
+	mlx_set_instance_depth(set->img->instances, 0);
 	return (TRUE);
 }

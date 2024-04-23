@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 16:00:59 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 09:38:49 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,9 @@ uint32_t	convert_color(unsigned int color);
 int		get_color_px_img(uint32_t x, uint32_t y, mlx_image_t *img);
 u_int64_t	time_to_ms(void);
 void	init_times_displays(t_params *game);
+size_t	get_current_time(void);
+void	display_game(void *params);
+
 
 /* DISPLAY FUNCTIONS */
 void	display_infos(t_params *game);

@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:49:38 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:51:44 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 11:10:54 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ void display_minimap(t_params *p)
 {
 	mlx_image_t	*img;
 
-	img = mlx_new_image(p->win->window, 500, 500);
-	print_minimap(p->map, img, p->player);
-	if (!img || (mlx_image_to_window(p->win->window, img, 10, 10) < 0))
+	img = p->win->minimap_img;
+	p->win->minimap_img = mlx_new_image(p->win->window, 500, 500);
+	print_minimap(p->map, p->win->minimap_img, p->player);
+	mlx_delete_image(p->win->window, img);
+	if (!p->win->minimap_img || (mlx_image_to_window(p->win->window, p->win->minimap_img, 10, 10) < 0))
 		exit_fct(p);
-	mlx_delete_image(p->win->window, p->win->minimap_img);
-	p->win->minimap_img = img;
+	mlx_set_instance_depth(p->win->minimap_img->instances, 1);
 }

@@ -6,7 +6,7 @@
 #    By: aranger <aranger@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 17:54:43 by nledent           #+#    #+#              #
-#    Updated: 2024/04/22 16:21:57 by aranger          ###   ########.fr        #
+#    Updated: 2024/04/23 09:40:15 by aranger          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS_BONUS		=	\
 					command/mouse_bonus.c \
 					command/command_bonus.c \
 					command/move_player_bonus.c \
+					command/display_image.c \
 
 SRC_BONUS		= $(addprefix src_bonus/, $(SRCS_BONUS))
 OBJS_BONUS		= $(SRC_BONUS:$(SRC_BONUS_DIR)/%.c=$(OBJ_BONUS_DIR)/%.o)

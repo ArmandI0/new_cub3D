@@ -4,7 +4,6 @@
 void	rotation(t_params *p, double step)
 {
 	rotate_player(p->player, step);
-	display_all(p);
 }
 
 static void translation(t_params *p, double step, t_bool tr)
@@ -14,7 +13,7 @@ static void translation(t_params *p, double step, t_bool tr)
 	else
 		translate_player_l_to_r(p->player, step, p->map->map2d);
 	remove_sprite_collision(p->player, p->sprites, p);	
-	display_all(p);
+	display_hands(p);
 }
 
 static void	translation_key(mlx_key_data_t	keydata, void *param)
@@ -36,6 +35,22 @@ static void	translation_key(mlx_key_data_t	keydata, void *param)
 		rotation(p, -SENSIVITY);
 }
 
+void	refresh_window(t_params *p)
+{
+	static size_t	start_time = 0;
+	size_t			time;
+
+	time = get_current_time();
+	if (start_time == 0)
+		start_time = get_current_time();
+	if (time - start_time < 33)
+		return ;
+	else
+	{
+		start_time = get_current_time();
+		display_all(p);
+	}
+}
 
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
