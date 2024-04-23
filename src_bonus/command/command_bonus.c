@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:04 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:34:02 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 11:47:01 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	init_command(t_params *game)
 	mlx_key_hook(game->win->window, &my_keyhook, game);
 	mlx_set_cursor_mode(game->win->window, MLX_MOUSE_HIDDEN);
 	mlx_cursor_hook(game->win->window, &cursor_fct, game);
+	mlx_loop_hook(game->win->window, &display_game, game);
 }

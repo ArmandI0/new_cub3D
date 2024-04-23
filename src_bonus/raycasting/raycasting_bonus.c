@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 16:02:49 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:34:53 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	find_wall(t_params *game, t_var_raycasting *var)
 			var->pos_y += var->step_y;
 			side = NORTH_SOUTH;
 		}
-		if (game->map->map2d[var->pos_y][var->pos_x] == '1')
+		if (ft_strchr("1P", game->map->map2d[var->pos_y][var->pos_x]) != 0)
 			hit = 1;
 	}
 	return (side);
@@ -117,5 +117,6 @@ t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p)
 	draw_sprites(dist_buffer, game->sprites, game->player, game->win);
 	mlx_delete_image(set->window, img);
 	mlx_image_to_window(set->window, set->img, 0, 0);
+	mlx_set_instance_depth(set->img->instances, 0);
 	return (TRUE);
 }

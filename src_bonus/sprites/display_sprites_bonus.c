@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:53:16 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 14:34:42 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static int *get_sprite_order(t_sprites sprite, t_player *p)
 		i++;
 	}
 	sort_sprites(sprite_dist, sprite_order, sprite.nb_sprites);
+	free(sprite_dist);
 	return (sprite_order);
 }
 
@@ -124,5 +125,6 @@ t_bool draw_sprites(double dist_bufr[WIDTH], t_sprites sprites, t_player *p,
 		}
 		i++;
 	}
+	free(order);
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:33:44 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 14:24:43 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,17 +130,12 @@ int	main(int argc, const char **argv)
 	if (load_images(game) == FALSE)
 		exit_fct(game);
 	init_times_displays(game);
-	if (raycasting(game, game->win, game->player) == FALSE)
-		exit_fct(game);
-	printf("red %d\n", convert_color(rgb_to_int(255,0 , 0)));
-	display_minimap(game);
-	display_hands(game);
-	display_welcome(game->win->window, game);
+	//display_welcome(game->win->window, game);
 	init_command(game);
+	display_hands(game);
 	mlx_loop(game->win->window);
 	mlx_resize_hook(game->win->window, &resize_mlx, game->win);
 	mlx_close_hook(game->win->window, &close_fct, game->win);
-	//mlx_terminate(game->win->window);
 	free_game(game);
 	return (0);
 }
