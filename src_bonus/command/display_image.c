@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:30:31 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 11:50:38 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 14:36:06 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	display_game(void *params)
 	else
 	{
 		start_time = get_current_time();
-		//display_all(p);
 		display_minimap(game);
 		if (raycasting(game, game->win, game->player) == FALSE)
 			exit_fct(game);
-		//display_hands(game);
+		//display_infos(game);
 	}
 }

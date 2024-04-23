@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:16:09 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:46:38 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:32:46 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void translate_player_forward(t_player *player, double step, char** map)
     new_pos_y = player->pos_y + (player->dir_y * step);
 	hit_x = player->pos_x + (player->dir_x * step * 5);
 	hit_y = player->pos_y + (player->dir_y * step * 5);
-	if (map[(int)hit_y][(int)hit_x] == '1')
+	if (ft_strchr("1P", map[(int)hit_y][(int)hit_x]) != 0)
 		return ;
     player->pos_x = new_pos_x;
     player->pos_y = new_pos_y;

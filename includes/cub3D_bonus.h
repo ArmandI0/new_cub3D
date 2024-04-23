@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 09:38:49 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 16:29:47 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MINIMAP_SQR_NB 9
 /* game settings */
 # define SPEED 0.1
-# define SENSIVITY 3
+# define SENSIVITY 2
 # define EAST_WEST 0
 # define NORTH_SOUTH 1
 
@@ -249,6 +249,7 @@ u_int64_t	time_to_ms(void);
 void	init_times_displays(t_params *game);
 size_t	get_current_time(void);
 void	display_game(void *params);
+void	manage_door(t_params *p);
 
 
 /* DISPLAY FUNCTIONS */

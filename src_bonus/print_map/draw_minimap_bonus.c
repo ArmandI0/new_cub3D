@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:49:38 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 11:10:54 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:30:24 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void print_minimap(t_map *minimap, mlx_image_t *img, t_player *p)
 					put_pixel(img, j, i, convert_color(0xFFFFFF));
 				else if (ft_strchr("NSEW", minimap->map2d[(int)round(y)][(int)round(x)]) != 0)
 					put_pixel(img, j, i, convert_color(0xFFFFFF));
+				else if (ft_strchr("PQ", minimap->map2d[(int)round(y)][(int)round(x)]) != 0)
+					put_pixel(img, j ,i, convert_color(0xFF0000));
 				else
 					put_pixel(img, j, i, convert_color(0xA09C9C));
 			}		
