@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_colors_data_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:47:08 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:30:26 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_errors	extract_colors(t_params *game, t_list *head)
 		return (ER_INVALID_MAP_DOUBLE);
  	put_color_default_if_null(game, floor, PARAM_F);
  	put_color_default_if_null(game, ceiling, PARAM_C);
-	ft_printf_fd(1, "ceiling color game : %d\n", game->ceiling_color);
+	//ft_printf_fd(1, "ceiling color game : %d\n", game->ceiling_color);
 	r_value = extract_rgb_str(game, floor, " \n", PARAM_F);
-	ft_printf_fd(1, "floor color game : %d\n", game->floor_color);
+	//ft_printf_fd(1, "floor color game : %d\n", game->floor_color);
 	if (r_value != 0)
 		return (r_value);
 	r_value = extract_rgb_str(game, ceiling, " \n", PARAM_C);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_errors_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:16:32 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:54:43 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:12:44 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	print_error2(t_errors error)
 		ft_printf_fd(2, "Invalid map : Too many startpoints");
 	else if (error == ER_MISSING_WALLS)
 		ft_printf_fd(2, "Invalid map : There are missing walls");
+	else if (error == ER_INVALID_MAP_NO_PATH)
+		ft_printf_fd(2, "Invalid map : Texture path missing");	
 }
 
 void	print_error(t_errors error)

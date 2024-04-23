@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ver_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:52:05 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:34:42 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
+
+t_bool	load_textures(t_params *game)
+{
+	game->texture[PARAM_NO] = mlx_load_png(game->path_texture[PARAM_NO]);
+	game->texture[PARAM_SO] = mlx_load_png(game->path_texture[PARAM_SO]);
+	game->texture[PARAM_EA] = mlx_load_png(game->path_texture[PARAM_EA]);
+	game->texture[PARAM_WE] = mlx_load_png(game->path_texture[PARAM_WE]);
+	game->texture[PARAM_DOOR] = mlx_load_png(game->path_texture[PARAM_DOOR]);
+	if (!game->texture[PARAM_NO] || !game->texture[PARAM_EA ]
+		|| !game->texture[PARAM_SO] || !game->texture[PARAM_WE]
+		|| !game->texture[PARAM_DOOR])
+		return (FALSE);
+	return (TRUE);
+}
 
 static t_param_type	choose_texture(t_player *player,
 	t_var_raycasting *var, int side)
@@ -53,7 +67,10 @@ void	draw_ver_line(t_params *game, t_var_raycasting *var, int x_position,  int s
 	double			ratio;
 	int				x_txt;
 
-	dir_txt = choose_texture(game->player, var, side);
+	if (game->map->map2d[var->pos_y][var->pos_x] == 'P')
+		dir_txt = PARAM_DOOR;
+	else
+		dir_txt = choose_texture(game->player, var, side);
 	x_txt = get_x_on_texture(var, game->texture[dir_txt]->width, side, game->player);
 	ratio = (double)(var->end - var->start) / game->texture[dir_txt]->height;
 	y = 0;

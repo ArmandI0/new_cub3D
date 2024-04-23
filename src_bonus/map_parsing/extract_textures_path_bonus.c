@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   extract_textures_path_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:48:21 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:30:05 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
 
-static t_bool	look_for_double_param(t_list *texture_path[4])
+static t_bool	look_for_double_param(t_list *texture_path[5])
 {
 	int		i;
 	t_list	*double_param;
@@ -30,6 +30,8 @@ static t_bool	look_for_double_param(t_list *texture_path[4])
 				str = ft_strdup("EA");
 			else if (i == PARAM_WE)
 				str = ft_strdup("WE");
+			else if (i == PARAM_WE)
+				str = ft_strdup("D");
 			double_param = get_line_with_str(texture_path[i]->next, str);
 			free(str);
 			if (double_param != NULL)
@@ -44,20 +46,18 @@ static t_bool	look_for_double_param(t_list *texture_path[4])
 Record the path of default textures in the game parameters if there is no path found in the .cub.
 Record first "texture_x" and then replace 'x' by the good number.
 */
-static void	put_path_default_if_null(t_params *game, t_list *texture_path[4])
+static t_errors	r_err_if_null(t_list *texture_path[5])
 {
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (texture_path[i] == NULL)
-		{
-			game->path_texture[i] = ft_strdup("textures/texture_x");
-			(game->path_texture[i])[17] = '1' + i;
-		}
+			return (ER_INVALID_MAP_NO_PATH);
 		i++;
 	}
+	return (NO_ERR);
 }
 
 static int	put_path_if_not_null(t_params *game, t_list *texture_path[4], char *set)
@@ -66,7 +66,7 @@ static int	put_path_if_not_null(t_params *game, t_list *texture_path[4], char *s
 	char	*path;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		path = NULL;
 		if (texture_path[i] != NULL)
@@ -75,7 +75,8 @@ static int	put_path_if_not_null(t_params *game, t_list *texture_path[4], char *s
 			if (path == NULL || path[0] == 0)
 				return (ER_INVALID_MAP_NULL_PATH);
 			if (ft_strncmp(path, "NO", 2) != 0 && ft_strncmp(path, "SO", 2) != 0
- 				&& ft_strncmp(path, "WE", 2) != 0 && ft_strncmp(path, "EA", 2) != 0)
+ 				&& ft_strncmp(path, "WE", 2) != 0 && ft_strncmp(path, "EA", 2) != 0
+				&& ft_strncmp(path, "D", 1) != 0)
 			{
 				free(path);
 				return (ER_INVALID_MAP_FILE);
@@ -90,7 +91,7 @@ static int	put_path_if_not_null(t_params *game, t_list *texture_path[4], char *s
 		}
 		i++;
 	}
-	return (0);
+	return (NO_ERR);
 }
 
 static t_bool	check_access_paths(char *path_texture[4])
@@ -99,9 +100,9 @@ static t_bool	check_access_paths(char *path_texture[4])
 	int	fd;
 	
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
-		ft_printf_fd(1, "print path %s\n", path_texture[i]);
+		//ft_printf_fd(1, "print path %s\n", path_texture[i]);
 		fd = open(path_texture[i], O_RDONLY);
 		if (fd == -1)
 			return (FALSE);
@@ -114,20 +115,23 @@ static t_bool	check_access_paths(char *path_texture[4])
 
 t_errors	extract_path_textures(t_params *game, t_list *head)
 {
-	t_list	*texture_path[4];
+	t_list	*texture_path[5];
 	int		r_value;
 
 	texture_path[PARAM_NO] = get_line_with_str(head, "NO");
 	texture_path[PARAM_SO] = get_line_with_str(head, "SO");
 	texture_path[PARAM_EA] = get_line_with_str(head, "EA");
 	texture_path[PARAM_WE] = get_line_with_str(head, "WE");
+	texture_path[PARAM_DOOR] = get_line_with_str(head, "D");
 	if (look_for_double_param(texture_path) == TRUE)
 		return (ER_INVALID_MAP_DOUBLE);
-	put_path_default_if_null(game, texture_path);
+	r_value = r_err_if_null(texture_path);
+	if (r_value != NO_ERR)
+		return (r_value);
 	r_value = put_path_if_not_null(game, texture_path, " \n");
-	if (r_value != 0)
+	if (r_value != NO_ERR)
 		return (r_value);
 	if (check_access_paths(game->path_texture) == FALSE)
 		return (ER_FILE_TEXTURE_N_FOUND);
-	return (0);
+	return (NO_ERR);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:54:27 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 16:59:51 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	free_path_textures(t_params *game)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (game->path_texture[i] != NULL)
 			free(game->path_texture[i]);
@@ -89,4 +89,6 @@ void	free_textures(t_params *game)
 		mlx_delete_texture(game->texture[2]);
 	if (game->texture[3] != NULL)
 		mlx_delete_texture(game->texture[3]);
+	if (game->texture[4] != NULL)
+		mlx_delete_texture(game->texture[4]);
 }
