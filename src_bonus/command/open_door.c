@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:25:13 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 16:01:54 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:16:56 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 static char	change_door_state(char c)
 {
 	if (c == 'P')
-		return('Q');
+		return ('Q');
 	return ('P');
 }
+
 void	manage_door(t_params *p)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = (int)p->player->pos_x;
 	y = (int)p->player->pos_y;
