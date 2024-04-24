@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 15:34:53 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:44:34 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ int	find_wall(t_params *game, t_var_raycasting *var)
 void	set_start_and_end(t_var_raycasting *var, int h_line)
 {
 	var->start = -h_line / 2 + HEIGHT / 2 ;
-	if (var->start < 0)
-		var->start = 0;
+/* 	if (var->start < 0)
+		var->start = 0; */
 	var->end = h_line / 2 + HEIGHT / 2;
-	if (var->end >= HEIGHT)
-		var->end = HEIGHT - 1;
+/* 	if (var->end >= HEIGHT)
+		var->end = HEIGHT - 1; */
 }
 
 t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p)

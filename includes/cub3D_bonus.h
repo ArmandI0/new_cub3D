@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/24 14:49:26 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/24 15:43:12 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,14 @@ typedef struct s_var_raycasting
 
 typedef enum cb_errors
 {
+	NO_ERR,
 	ER_NB_ARGS,
 	ER_MAP_TYPE,
 	ER_FILE_N_FOUND,
 	ER_EXTRACTION_MAP,
 	ER_INVALID_MAP_DOUBLE,
 	ER_INVALID_MAP_FILE,
+	ER_INVALID_MAP_NO_PATH,
 	ER_INVALID_MAP_NULL_PATH,
 	ER_INVALID_MAP_NULL_COLOR,
 	ER_FILE_TEXTURE_N_FOUND,
@@ -120,6 +122,7 @@ typedef enum cb_param_type
 	PARAM_SO,
 	PARAM_EA,
 	PARAM_WE,
+	PARAM_DOOR,
 	PARAM_F,
 	PARAM_C,
 }			t_param_type;
@@ -155,8 +158,8 @@ typedef struct s_params
 	t_window_settings *win;
 	t_player		*player;
 	int			nb_map_lines;
-	char		*path_texture[4];
-	mlx_texture_t	*texture[4];
+	char		*path_texture[5];
+	mlx_texture_t	*texture[5];
 	mlx_image_t	*anim_p[5];
 	t_sprites	sprites;
 	int			anim_p_pattern[9];
@@ -187,7 +190,7 @@ t_bool		map_to_tab(t_params *game, t_list *head);
 t_bool		check_walls(t_params *game);
 t_bool		load_images(t_params *game);
 t_bool		load_sprites(t_params *game);
-
+t_bool		load_textures(t_params *game);
 
 /* EXEC FUNCTIONS */
 

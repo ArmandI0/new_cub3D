@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:49:59 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:11:59 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,26 @@ void	map_file_parsing(t_params *game, const char *filepath)
 	int	error;
 
 	error = extract_file_into_list(game, filepath);
-	if (error != 0)
+	if (error != NO_ERR)
 		print_err_free_exit(game, error);
 	error = extract_path_textures(game, game->head_list_lines);
-	if (error != 0)
+	if (error != NO_ERR)
 		print_err_free_exit(game, error);
 	error = extract_colors(game, game->head_list_lines);
-	if (error != 0)
+	if (error != NO_ERR)
 		print_err_free_exit(game, error);
 	error = extract_map(game);
-	if (error != 0)
+	if (error != NO_ERR)
 		print_err_free_exit(game, error);
 	error = check_if_empty_lines_in_the_map(game);
-	if (error != 0)
+	if (error != NO_ERR)
 		print_err_free_exit(game, error);
 	error = check_startpoints(game);
-	if (error != 0)
+	if (error != NO_ERR)
 		print_err_free_exit(game, error);
 	if (map_to_tab(game, game->head_list_lines) == FALSE)
 		print_err_free_exit(game, ER_EXTRACTION_MAP);
 	error = check_walls(game);
-	if (error != 0)
+	if (error != NO_ERR)
 		print_err_free_exit(game, error);
 }

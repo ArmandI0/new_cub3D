@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:54:54 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:04:40 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
 
-static t_bool	check_identifier_name_only(char *identifier_in_str, int len_identifier)
+static t_bool	check_identifier_name_only(char *identifier_in_str,
+	int len_identifier)
 {
 	if (identifier_in_str[len_identifier] == 0)
 		return (TRUE);
@@ -40,7 +41,8 @@ t_list	*get_line_with_str(t_list *head, char *identifier)
 			else
 				len_str = 0;
 			identifier_in_str = ft_strnstr(line->content, identifier, len_str);
-			if (identifier_in_str != NULL && check_identifier_name_only(identifier_in_str, len_id) == TRUE)
+			if (identifier_in_str != NULL && 
+				check_identifier_name_only(identifier_in_str, len_id) == TRUE)
 				return (line);
 			line = line->next;
 		}
