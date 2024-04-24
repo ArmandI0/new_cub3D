@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:30:31 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 20:59:28 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:48:41 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	move_player(void *params)
 		return ;
 	else
 	{
+		start_time = get_current_time();
 		if (game->w_key == TRUE)
 			translation(game, SPEED, FALSE);
 		if (game->s_key == TRUE)
@@ -34,6 +35,11 @@ void	move_player(void *params)
 			translation(game, -SPEED, TRUE);
 		if (game->d_key == TRUE)
 			translation(game, SPEED, TRUE);
+		if (game->left_key == TRUE)
+			rotation(game, -SENSIVITY);
+		if (game->right_key == TRUE)
+			rotation(game, SENSIVITY);
+		display_hands(game);
 	}
 }
 
