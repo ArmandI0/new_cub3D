@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 17:34:24 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/24 15:43:12 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,12 @@ typedef struct s_params
 	t_list		*head_list_lines;
 	t_startpoint	start_p;
 	t_display	times;
+	t_bool		w_key;
+	t_bool		a_key;
+	t_bool		s_key;
+	t_bool		d_key;
+	t_bool		right_key;
+	t_bool		left_key;
 }			t_params;
 
 /* PARSING FUNCTIONS */
@@ -253,6 +259,10 @@ void	init_times_displays(t_params *game);
 size_t	get_current_time(void);
 void	display_game(void *params);
 void	manage_door(t_params *p);
+void	move_player(void *params);
+void	translation(t_params *p, double step, t_bool tr);
+
+
 
 
 /* DISPLAY FUNCTIONS */
