@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/24 15:43:12 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/25 22:02:03 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,14 +143,14 @@ typedef struct s_sprites
 	int			*pos_y;
 }		t_sprites;
 
-typedef struct s_display
+/* typedef struct s_display
 {
 	u_int64_t	*spagh_eaten;
 	u_int64_t	one_min;
 	t_bool		dead;
 	u_int64_t	start_game;
 	u_int64_t	time_given;
-}		t_display;
+}		t_display; */
 
 typedef struct s_params
 {
@@ -161,13 +161,15 @@ typedef struct s_params
 	char		*path_texture[5];
 	mlx_texture_t	*texture[5];
 	mlx_image_t	*anim_p[5];
+	mlx_image_t	*texts[5];
 	t_sprites	sprites;
+	size_t		time_start;
 	int			anim_p_pattern[9];
 	int			ceiling_color;
 	int			floor_color;
 	t_list		*head_list_lines;
 	t_startpoint	start_p;
-	t_display	times;
+	//t_display	times;
 	t_bool		w_key;
 	t_bool		a_key;
 	t_bool		s_key;
@@ -254,7 +256,6 @@ int		rgb_to_int(unsigned char red, unsigned char green, unsigned char blue);
 int		get_color_px_txt(uint32_t x, uint32_t y, mlx_texture_t *txt);
 uint32_t	convert_color(unsigned int color);
 int		get_color_px_img(uint32_t x, uint32_t y, mlx_image_t *img);
-u_int64_t	time_to_ms(void);
 void	init_times_displays(t_params *game);
 size_t	get_current_time(void);
 void	display_game(void *params);

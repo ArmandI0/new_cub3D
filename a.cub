@@ -1,10 +1,10 @@
 
 
-NO textures/candy1_250x250.png
-SO textures/candy2_250x250.png
-WE textures/candy3_250x250.png
+NO textures/einstein.png
+SO textures/socrate.png
+WE textures/epicure.png
 
-EA textures/candy4_250x250.png
+EA textures/voltaire.png
 D textures/door_128x128.png
 
 
@@ -13,7 +13,7 @@ D textures/door_128x128.png
         1111111111111111111111111
         1000000000110000000000001
         10101100001110000000000001
-        1001000000P000000000000E1
+        1001000000P0000X0000000E1
 111111111011000001110000000000001
 100000000011000001100111111111111
 111111111111111111111111111111111
