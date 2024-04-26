@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   display_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 17:21:31 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/25 21:41:34 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D_bonus.h"
 
-void	display_welcome(mlx_t *mlx, t_params *game)
+/* void	display_welcome(mlx_t *mlx, t_params *game)
 {
 	char 		*str;
 	char 		*str2;
@@ -47,7 +47,7 @@ void	display_success(mlx_t *mlx, t_params *game)
 	free (str3);
 	sleep(5);
 	exit_fct(game);
-}
+} */
 
 
 void	display_all(t_params *game)

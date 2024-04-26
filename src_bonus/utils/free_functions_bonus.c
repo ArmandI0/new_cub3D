@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/23 16:59:51 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/25 21:31:44 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	free_path_textures(t_params *game)
 
 void	free_game(t_params *game)
 {
-	if (game->times.spagh_eaten)
-		free(game->times.spagh_eaten);
 	free_img_anim(game);
 	free_img_sprites(game);
 	free_textures(game);

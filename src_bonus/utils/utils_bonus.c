@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/23 17:04:40 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/25 21:45:31 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,3 @@ t_list	*get_line_with_str(t_list *head, char *identifier)
 	return (NULL);
 }
 
-u_int64_t	time_to_ms(void)
-{
-	u_int64_t		time_ms;
-	struct timeval	now;
-
-	gettimeofday(&now, NULL);
-	time_ms = (now.tv_sec * 1000);
-	time_ms += (now.tv_usec / 1000);
-	return (time_ms);
-}

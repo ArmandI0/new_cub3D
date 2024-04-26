@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_image.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:30:31 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/24 14:48:41 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/25 21:41:07 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	display_game(void *params)
 		display_minimap(game);
 		if (raycasting(game, game->win, game->player) == FALSE)
 			exit_fct(game);
-		//display_infos(game);
+		display_infos(game);
 	}
 }

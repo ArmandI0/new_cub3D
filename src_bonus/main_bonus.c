@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 14:24:43 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/25 21:49:45 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,6 @@ mlx_image_t	*set_img(t_window_settings *set)
 	}
 	return (NULL);
 }
-
-/* void	print_map(t_list *head)
-{
-	t_list	*next;
-
-	ft_printf_fd(1, "PRINT MAP :\n");
-	if (head != NULL)
-	{
-		next = head;
-		while (next != NULL)
-		{
-			next = head->next;
-			ft_printf_fd(1, "%s", head->content);
-			head = next;
-		}
-	}
-}
-
-void	print_map_tab(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		ft_printf_fd(1, "%s\n", map[i]);
-		i++;
-	}
-} */
 
 void	ft_error(t_window_settings *set)
 {
@@ -118,6 +89,7 @@ static t_params	*init_game(const char **argv)
 	win->img = set_img(win);
 	game->player = init_new_players(game->start_p.dir, game->start_p.x,
 			game->start_p.y);
+	game->time_start = get_current_time();
 	return (game);
 }
 
@@ -129,7 +101,7 @@ int	main(int argc, const char **argv)
 	game = init_game(argv);
 	if (load_images(game) == FALSE)
 		exit_fct(game);
-	init_times_displays(game);
+	//init_times_displays(game);
 	//display_welcome(game->win->window, game);
 	init_command(game);
 	display_hands(game);
