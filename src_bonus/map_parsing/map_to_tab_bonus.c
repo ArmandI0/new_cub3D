@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_to_tab_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:48:30 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/27 17:03:02 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	get_nb_lines(t_list *head)
 {
 	int		nb_lines;
-	t_list  *tmp;
+	t_list	*tmp;
 
 	tmp = head;
 	nb_lines = 0;
@@ -32,7 +32,7 @@ static int	get_len_max(t_list *head)
 {
 	int		len_max;
 	int		len_line;
-	t_list  *tmp;
+	t_list	*tmp;
 
 	tmp = head;
 	len_line = 0;
@@ -75,7 +75,7 @@ t_bool	map_to_tab(t_params *game, t_list *head)
 	int		size_max_line;
 	int		nb_lines;
 	int		id_line;
-	
+
 	id_line = 0;
 	line = head;
 	nb_lines = get_nb_lines(head);
@@ -88,7 +88,8 @@ t_bool	map_to_tab(t_params *game, t_list *head)
 		return (FALSE);
 	while (line)
 	{
-		if (line_to_tab(game->map->map2d, line, id_line, size_max_line) == FALSE)
+		if (line_to_tab(game->map->map2d, line, id_line,
+				size_max_line) == FALSE)
 			return (FALSE);
 		id_line ++;
 		line = line->next;

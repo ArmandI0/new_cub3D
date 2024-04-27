@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/23 17:11:59 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/27 17:05:31 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	print_err_free_exit(t_params *game, t_errors error)
 {
 	print_error(error);
 	free_game(game);
-	exit (1);	
+	exit (1);
 }
 
 static t_errors	check_if_empty_lines_in_the_map(t_params *game)
