@@ -6,11 +6,11 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:06 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 18:39:11 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D_bonus.h"
+#include "../../includes/cub3D.h"
 
 static t_player	*set_orientation(double dir_x, double dir_y,
 				double plane_x, double plane_y)

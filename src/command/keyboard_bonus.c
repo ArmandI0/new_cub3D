@@ -6,11 +6,11 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:12:00 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:10:22 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:53:12 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D_bonus.h"
+#include "../../includes/cub3D.h"
 
 void	rotation(t_params *p, double step)
 {
@@ -23,7 +23,6 @@ void	translation(t_params *p, double step, t_bool tr)
 		translate_player_forward(p->player, step, p->map->map2d);
 	else
 		translate_player_l_to_r(p->player, step, p->map->map2d);
-	remove_sprite_collision(p->player, p->sprites, p);
 }
 
 static void	translation_key(mlx_key_data_t	keydata, void *param)
@@ -71,8 +70,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	p = param;
 	if (keydata.key == MLX_KEY_P)
 		printf("pos x : %f\npos y : %f\n", p->player->pos_x, p->player->pos_y);
-	if (keydata.key == MLX_KEY_E && keydata.action == MLX_PRESS)
-		manage_door(p);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		mlx_close_window(p->win->window);
