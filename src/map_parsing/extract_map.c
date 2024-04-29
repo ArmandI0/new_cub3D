@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_map_bonus.c                                :+:      :+:    :+:   */
+/*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:00:23 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_bool	are_map_lines_valid(t_list *head)
 		i = 0;
 		while (element->content[i] != 0)
 		{
-			if (ft_strchr("10 NSEWXPQ\n", element->content[i]) == 0)
+			if (ft_strchr("10 NSEW\n", element->content[i]) == 0)
 				return (FALSE);
 			i++;
 		}

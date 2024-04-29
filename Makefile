@@ -6,7 +6,7 @@
 #    By: nledent <nledent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 17:54:43 by nledent           #+#    #+#              #
-#    Updated: 2024/04/29 19:49:46 by nledent          ###   ########.fr        #
+#    Updated: 2024/04/29 20:10:03 by nledent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,19 +52,10 @@ SRCS		=	\
 					utils/check_args.c \
 					utils/print_errors.c \
 					utils/free_functions.c \
-					utils/free_functions2.c \
 					utils/colors.c \
 					utils/utils.c \
 					utils/utils_lst.c \
 					utils/load_images.c \
-					sprites_and_anims/display_info.c \
-					sprites_and_anims/anim_init.c \
-					sprites_and_anims/anim_hands.c \
-					sprites_and_anims/display_sprites.c \
-					sprites_and_anims/coord_sprite.c \
-					sprites_and_anims/load_sprites.c \
-					sprites_and_anims/collision_sprites.c \
-					print_map/draw_minimap.c \
 					raycasting/init_player.c \
 					raycasting/draw_ver_line.c \
 					raycasting/raycasting.c \
@@ -74,7 +65,6 @@ SRCS		=	\
 					command/command.c \
 					command/move_player.c \
 					command/display_image.c \
-					command/open_door.c \
 
 SRCS_BONUS		=	\
 					main_bonus.c \

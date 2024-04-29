@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_bonus.c                                   :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:12:00 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:53:12 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:58:41 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	t_params	*p;
 
 	p = param;
-	if (keydata.key == MLX_KEY_P)
-		printf("pos x : %f\npos y : %f\n", p->player->pos_x, p->player->pos_y);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		mlx_close_window(p->win->window);

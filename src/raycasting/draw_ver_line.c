@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_ver_line_bonus.c                              :+:      :+:    :+:   */
+/*   draw_ver_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:17:24 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ t_bool	load_textures(t_params *game)
 	game->texture[PARAM_SO] = mlx_load_png(game->path_texture[PARAM_SO]);
 	game->texture[PARAM_EA] = mlx_load_png(game->path_texture[PARAM_EA]);
 	game->texture[PARAM_WE] = mlx_load_png(game->path_texture[PARAM_WE]);
-	game->texture[PARAM_DOOR] = mlx_load_png(game->path_texture[PARAM_DOOR]);
 	if (!game->texture[PARAM_NO] || !game->texture[PARAM_EA]
-		|| !game->texture[PARAM_SO] || !game->texture[PARAM_WE]
-		|| !game->texture[PARAM_DOOR])
+		|| !game->texture[PARAM_SO] || !game->texture[PARAM_WE])
 		return (FALSE);
 	return (TRUE);
 }
@@ -65,10 +63,7 @@ static t_param_type	set_dir_texture(t_params *game,
 {
 	t_param_type	dir_txt;
 
-	if (game->map->map2d[var->pos_y][var->pos_x] == 'P')
-		dir_txt = PARAM_DOOR;
-	else
-		dir_txt = choose_texture(game->player, var, side);
+	dir_txt = choose_texture(game->player, var, side);
 	return (dir_txt);
 }
 

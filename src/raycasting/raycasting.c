@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_bonus.c                                 :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:09:48 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ t_bool	raycasting(t_params *game, t_window_settings *set, t_player *p)
 {
 	int					i;
 	t_var_raycasting	var;
-	double				dist_buffer[WIDTH];
 	mlx_image_t			*img;
 
 	i = 0;
@@ -84,11 +83,9 @@ t_bool	raycasting(t_params *game, t_window_settings *set, t_player *p)
 		set_var(&var, p, i);
 		get_side_put_perp_dist(&var, game);
 		set_start_and_end(&var);
-		dist_buffer[i] = var.perp_dist;
 		draw_ver_line(game, &var, i, var.side);
 		i++;
 	}
-	draw_sprites(dist_buffer, game->sprites, game->player, game->win);
 	mlx_delete_image(set->window, img);
 	mlx_image_to_window(set->window, set->img, 0, 0);
 	mlx_set_instance_depth(set->img->instances, 0);

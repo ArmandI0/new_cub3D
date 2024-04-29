@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:52:23 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:08:03 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,23 +157,6 @@ t_bool		load_images(t_params *game);
 t_bool		load_sprites(t_params *game);
 t_bool		load_textures(t_params *game);
 t_bool		load_texts(t_params *game);
-
-/* SPRITES & ANIMS FUNCTIONS */
-t_bool		load_sprites(t_params *game);
-t_bool		draw_sprites(double dist_buffer[WIDTH], t_sprites sprites,
-				t_player *p, t_window_settings *win);
-void		get_pos_vert_sprite(t_coord_sprite_screen *s,
-				t_coord sprite_matrix);
-void		get_pos_horiz_sprite(t_coord_sprite_screen *s,
-				t_coord sprite_matrix);
-t_coord		get_pos_sprite_transformed(int i, t_player *p,
-				t_sprites sprites, int *sprite_order);
-void		remove_sprite_collision(t_player *p, t_sprites sprites,
-				t_params *game);
-t_bool		load_anim(t_params *game);
-t_bool		load_texts(t_params *game);
-int			count_nb_sprites(char **map2d);
-void		init_display_anims(t_params *game);
 
 /* EXEC FUNCTIONS */
 void		my_keyhook(mlx_key_data_t keydata, void *param);

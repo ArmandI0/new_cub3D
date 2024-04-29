@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/27 17:24:36 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:02:11 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static t_bool	look_for_double_param(t_list *texture_path[5])
 			str = ft_strdup("EA");
 		else if (i == PARAM_WE)
 			str = ft_strdup("WE");
-		else if (i == PARAM_WE)
-			str = ft_strdup("D ");
 		double_param = get_line_with_str(texture_path[i]->next, str);
 		free(str);
 		if (double_param != NULL)

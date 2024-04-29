@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:08:21 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,6 @@ static t_params	*init_game(const char **argv)
 		print_err_free_exit(game, ER_DEFAULT);
 	game->win = win;
 	map_file_parsing(game, argv[1]);
-	game->sprites.nb_sprites = count_nb_sprites(game->map->map2d);
-	if (game->sprites.nb_sprites == 0)
-		print_err_free_exit(game, ER_NB_SPRITES);
 	set_map_w_and_h(game);
 	get_coord_start(game, game->map->map2d);
 	win->window = mlx_init(WIDTH, HEIGHT, "cub3D", true);
@@ -86,7 +83,6 @@ static t_params	*init_game(const char **argv)
 	win->img = set_img(win, game);
 	game->player = init_new_players(game->start_p.dir, game->start_p.x,
 			game->start_p.y);
-	game->time_start = get_current_time();
 	return (game);
 }
 
@@ -99,7 +95,6 @@ int	main(int argc, const char **argv)
 	if (load_images(game) == FALSE)
 		print_err_free_exit(game, ER_LOAD_PNG);
 	init_command(game);
-	init_display_anims(game);
 	mlx_loop(game->win->window);
 	mlx_resize_hook(game->win->window, &resize_mlx, game->win);
 	mlx_close_hook(game->win->window, &close_fct, game->win);

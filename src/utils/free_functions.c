@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_functions_bonus.c                             :+:      :+:    :+:   */
+/*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:06:30 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	free_game(t_params *game)
 {
 	if (game)
 	{
-		free_img_anim(game);
-		free_img_sprites(game);
 		free_textures(game);
 		if (game->win != NULL)
 		{

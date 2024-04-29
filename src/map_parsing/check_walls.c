@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_walls_bonus.c                                :+:      :+:    :+:   */
+/*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:59:57 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_bool	check_if_missing_wall(char **map)
 		j = 0;
 		while (map[i][j] != 0)
 		{
-			if (ft_strchr("PX0NSEW", map[i][j]) != 0)
+			if (ft_strchr("0NSEW", map[i][j]) != 0)
 			{
 				if (check_all_wall_around(map, i, j) == FALSE)
 					return (TRUE);
