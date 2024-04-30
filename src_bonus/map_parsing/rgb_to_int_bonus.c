@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_to_int_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/27 17:25:27 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/30 16:26:53 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int	str_rgb_to_int(char *rgb_str, char *set)
 	i = 0;
 	rgb_trim = ft_strtrim(rgb_str, set);
 	if (rgb_trim == NULL || rgb_trim[0] == 0)
+		free(rgb_trim);
+	if (rgb_trim == NULL || rgb_trim[0] == 0)
 		return (-1);
 	split_rgb = ft_split(rgb_trim, ',');
 	while (split_rgb[i] != NULL)
@@ -76,9 +78,8 @@ t_errors	extract_rgb_str(t_params *game, t_list *color,
 	if (color != NULL)
 	{
 		rgb = ft_strtrim(color->content, set);
-		if (rgb == NULL || rgb[0] == 0)
-			return (ER_INVALID_MAP_FILE);
-		if ((p_type == PARAM_F && rgb[0] != 'F')
+		if (rgb == NULL || rgb[0] == 0
+			|| (p_type == PARAM_F && rgb[0] != 'F')
 			|| (p_type == PARAM_C && rgb[0] != 'C'))
 		{
 			free(rgb);

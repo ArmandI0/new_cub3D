@@ -6,23 +6,24 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/30 15:57:20 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/30 16:27:22 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static void	atoi_rgb(int rgb[3], char **split_rgb, t_params *game)
+static t_bool	atoi_rgb(int rgb[3], char **split_rgb)
 {
 	rgb[0] = ft_atoi(split_rgb[0]);
 	if (rgb[0] < 0 || rgb[0] > 255)
-		print_err_free_exit(game, ER_INVALID_MAP_NULL_COLOR);
+		return (FALSE);
 	rgb[1] = ft_atoi(split_rgb[1]);
 	if (rgb[1] < 0 || rgb[1] > 255)
-		print_err_free_exit(game, ER_INVALID_MAP_NULL_COLOR);
+		return (FALSE);
 	rgb[2] = ft_atoi(split_rgb[2]);
 	if (rgb[2] < 0 || rgb[2] > 255)
-		print_err_free_exit(game, ER_INVALID_MAP_NULL_COLOR);
+		return (FALSE);
+	return (TRUE);
 }
 
 static int	put_split_rgb_to_int(int rgb[3], char **split_rgb)
@@ -46,7 +47,7 @@ static int	put_split_rgb_to_int(int rgb[3], char **split_rgb)
 	return (color);
 }
 
-static int	str_rgb_to_int(char *rgb_str, char *set, t_params *game)
+static int	str_rgb_to_int(char *rgb_str, char *set)
 {
 	int		color;
 	int		rgb[3];
@@ -57,24 +58,25 @@ static int	str_rgb_to_int(char *rgb_str, char *set, t_params *game)
 	i = 0;
 	rgb_trim = ft_strtrim(rgb_str, set);
 	if (rgb_trim == NULL || rgb_trim[0] == 0)
+	{
+		free(rgb_trim);
 		return (-1);
+	}
 	split_rgb = ft_split(rgb_trim, ',');
 	while (split_rgb[i] != NULL)
 		i++;
-	if (i == 3)
-	{
-		atoi_rgb(rgb, split_rgb, game);
+	if (i == 3 && atoi_rgb(rgb, split_rgb) == TRUE)
 		color = put_split_rgb_to_int(rgb, split_rgb);
-	}
 	else
 		color = -1;
 	free_split(split_rgb);
 	free(rgb_trim);
+	if (color == -1)
+		return (-1);
 	return (convert_color(color));
 }
 
-t_errors	extract_rgb_str(t_params *game, t_list *color,
-		char *set, t_param_type p_type)
+t_errors	extract_rgb_str_c(t_params *game, t_list *color, char *set)
 {
 	char	*rgb;
 
@@ -82,22 +84,39 @@ t_errors	extract_rgb_str(t_params *game, t_list *color,
 	if (color != NULL)
 	{
 		rgb = ft_strtrim(color->content, set);
-		if (rgb == NULL || rgb[0] == 0)
-			return (ER_INVALID_MAP_FILE);
-		if ((p_type == PARAM_F && rgb[0] != 'F')
-			|| (p_type == PARAM_C && rgb[0] != 'C'))
+		if (rgb == NULL || rgb[0] == 0 || rgb[0] != 'C')
 		{
 			free(rgb);
 			return (ER_INVALID_MAP_FILE);
 		}
 		rgb[0] = ' ';
-		if (p_type == PARAM_C)
-			game->ceiling_color = str_rgb_to_int(rgb, set, game);
-		else if (p_type == PARAM_F)
-			game->floor_color = str_rgb_to_int(rgb, set, game);
+		game->ceiling_color = str_rgb_to_int(rgb, set);
 		del_el_list(color, game);
 		free (rgb);
-		if (game->ceiling_color == -1 || game->floor_color == -1)
+		if (game->ceiling_color == -1)
+			return (ER_INVALID_MAP_FILE);
+	}
+	return (0);
+}
+
+t_errors	extract_rgb_str_f(t_params *game, t_list *color, char *set)
+{
+	char	*rgb;
+
+	rgb = NULL;
+	if (color != NULL)
+	{
+		rgb = ft_strtrim(color->content, set);
+		if (rgb == NULL || rgb[0] != 'F')
+		{
+			free(rgb);
+			return (ER_INVALID_MAP_FILE);
+		}
+		rgb[0] = ' ';
+		game->floor_color = str_rgb_to_int(rgb, set);
+		del_el_list(color, game);
+		free (rgb);
+		if (game->floor_color == -1)
 			return (ER_INVALID_MAP_FILE);
 	}
 	return (0);

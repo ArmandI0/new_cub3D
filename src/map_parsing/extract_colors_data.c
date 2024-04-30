@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/30 15:43:20 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/30 16:10:15 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ t_errors	extract_colors(t_params *game, t_list *head)
 		return (ER_INVALID_MAP_DOUBLE);
 	exit_if_path_null(game, floor, PARAM_F);
 	exit_if_path_null(game, ceiling, PARAM_C);
-	r_value = extract_rgb_str(game, floor, " \n", PARAM_F);
+	r_value = extract_rgb_str_f(game, floor, " \n");
 	if (r_value != 0)
 		return (r_value);
-	r_value = extract_rgb_str(game, ceiling, " \n", PARAM_C);
+	r_value = extract_rgb_str_c(game, ceiling, " \n");
 	if (r_value != 0)
 		return (r_value);
 	return (0);
