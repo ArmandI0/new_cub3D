@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_textures_path.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/29 20:15:17 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/30 12:31:37 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	put_path_if_not_null(t_params *game, t_list *texture_path[4],
 	char	*path;
 
 	i = -1;
-	while (++i < 5 && texture_path[i] != NULL)
+	while (++i < 4 && texture_path[i] != NULL)
 	{
 		path = NULL;
 		path = ft_strtrim((texture_path[i])->content, set);
