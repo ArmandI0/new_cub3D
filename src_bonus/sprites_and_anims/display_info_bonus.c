@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/25 22:09:23 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 18:31:47 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,8 @@ static void	display_start(t_params *game)
 	img2 = game->texts[1];
 	if (get_current_time() < (game->time_start + 1000 * 5))
 	{
-		mlx_image_to_window(game->win->window, img1, WIDTH / 2 - img1->width / 2, 30);
-		mlx_set_instance_depth(img1->instances, 2);
-		mlx_image_to_window(game->win->window, img2, WIDTH / 2 - img2->width / 2, 90);
-		mlx_set_instance_depth(img2->instances, 3);
 		img1->enabled = TRUE;
-		img2->enabled = TRUE;		
+		img2->enabled = TRUE;
 	}
 	else
 	{
@@ -35,38 +31,34 @@ static void	display_start(t_params *game)
 	}
 }
 
-static void	display_end(t_params *game, mlx_t *win)
+static void	display_end(t_params *game)
 {
-	mlx_image_t	*img1;
-	mlx_image_t	*img2;
-	mlx_image_t	*img3;
+	mlx_image_t	*img[3];
 
-	img1 = game->texts[2];
-	img2 = game->texts[3];
-	img3 = game->texts[4];
-	if (game->sprites.nb_remaining == 0)
+	img[0] = game->texts[2];
+	img[1] = game->texts[3];
+	img[2] = game->texts[4];
+	if (game->time_end == 0 && game->sprites.nb_remaining == 0)
+		game->time_end = get_current_time();
+	if (game->sprites.nb_remaining == 0
+		&& (get_current_time() - game->time_end) < 3000)
 	{
-		mlx_image_to_window(win, img1, WIDTH / 2 - img1->width / 2, 30);
-		mlx_set_instance_depth(img1->instances, 2);
-		mlx_image_to_window(win, img2, WIDTH / 2 - img2->width / 2, 90);
-		mlx_set_instance_depth(img2->instances, 3);
-		mlx_image_to_window(win, img3, WIDTH / 2 - img3->width / 2, 150);
-		mlx_set_instance_depth(img3->instances, 3);
-		img1->enabled = TRUE;
-		img2->enabled = TRUE;
-		img3->enabled = TRUE;
+		img[0]->enabled = TRUE;
+		img[1]->enabled = TRUE;
+		img[2]->enabled = TRUE;
+	}
+	else if ((get_current_time() - game->time_end) > 5000
+		&& game->sprites.nb_remaining == 0)
+	{
+		free_game(game);
+		exit (EXIT_SUCCESS);
 	}
 	else
-	{
-		img1->enabled = FALSE;
-		img2->enabled = FALSE;
-		img3->enabled = FALSE;
-	}
+		return ;
 }
 
 void	display_infos(t_params *game)
 {
-	(void)game;
 	display_start(game);
-	display_end(game, game->win->window);
+	display_end(game);
 }

@@ -6,13 +6,13 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:49:25 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 17:44:34 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:09:29 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
 
-double	find_next_side(double ray)
+static double	find_next_side(double ray)
 {
 	double	delta;
 
@@ -22,14 +22,9 @@ double	find_next_side(double ray)
 		delta = fabs(1 / ray);
 	return (delta);
 }
-void	set_var(t_var_raycasting *v, t_player *p, int i)
+
+static void	incr_side_dist(t_var_raycasting *v, t_player *p)
 {
-	v->ray_dir_x = p->dir_x + p->plane_x * (2 * i / (double)(WIDTH) - 1);
-	v->ray_dir_y = p->dir_y + p->plane_y * (2 * i / (double)(WIDTH) - 1);
-	v->dt_x = find_next_side(v->ray_dir_x);
-	v->dt_y = find_next_side(v->ray_dir_y);
-	v->pos_x = (int)p->pos_x;
-	v->pos_y = (int)p->pos_y;
 	if (v->ray_dir_x < 0)
 	{
 		v->step_x = -1;
@@ -52,66 +47,45 @@ void	set_var(t_var_raycasting *v, t_player *p, int i)
 	}
 }
 
-int	find_wall(t_params *game, t_var_raycasting *var)
+static void	set_var(t_var_raycasting *v, t_player *p, int i)
 {
-	int	side;
-	int	hit;
-
-	hit = 0;
-	while (hit == 0)
-	{
-		if (var->side_dist_x < var->side_dist_y)
-		{
-			var->side_dist_x += var->dt_x;
-			var->pos_x += var->step_x;
-			side = EAST_WEST;
-		}
-		else
-		{
-			var->side_dist_y += var->dt_y;
-			var->pos_y += var->step_y;
-			side = NORTH_SOUTH;
-		}
-		if (ft_strchr("1P", game->map->map2d[var->pos_y][var->pos_x]) != 0)
-			hit = 1;
-	}
-	return (side);
+	v->ray_dir_x = p->dir_x + p->plane_x * (2 * i / (double)(WIDTH) - 1);
+	v->ray_dir_y = p->dir_y + p->plane_y * (2 * i / (double)(WIDTH) - 1);
+	v->dt_x = find_next_side(v->ray_dir_x);
+	v->dt_y = find_next_side(v->ray_dir_y);
+	v->pos_x = (int)p->pos_x;
+	v->pos_y = (int)p->pos_y;
+	incr_side_dist(v, p);
 }
 
-void	set_start_and_end(t_var_raycasting *var, int h_line)
+static void	set_start_and_end(t_var_raycasting *var)
 {
+	int	h_line;
+
+	h_line = (int)(HEIGHT / var->perp_dist);
 	var->start = -h_line / 2 + HEIGHT / 2 ;
-/* 	if (var->start < 0)
-		var->start = 0; */
 	var->end = h_line / 2 + HEIGHT / 2;
-/* 	if (var->end >= HEIGHT)
-		var->end = HEIGHT - 1; */
 }
 
-t_bool  raycasting(t_params *game, t_window_settings *set, t_player *p)
+t_bool	raycasting(t_params *game, t_window_settings *set, t_player *p)
 {
-	int		i;
-	int 	side;
-	int		h_line;
-	t_var_raycasting var;
-	double	dist_buffer[WIDTH];
-	mlx_image_t	*img;
+	int					i;
+	t_var_raycasting	var;
+	double				dist_buffer[WIDTH];
+	mlx_image_t			*img;
 
 	i = 0;
 	img = set->img;
 	set->img = mlx_new_image(set->window, WIDTH, HEIGHT);
+	if (!set->img)
+		return (FALSE);
 	while (i < WIDTH)
 	{
 		set_var(&var, p, i);
-		side = find_wall(game, &var);
-		if (side == EAST_WEST)
-			var.perp_dist = (var.side_dist_x - var.dt_x);
-		else
-			var.perp_dist = (var.side_dist_y - var.dt_y);
-		h_line = (int)(HEIGHT / var.perp_dist);
-		set_start_and_end(&var, h_line);
+		get_side_put_perp_dist(&var, game);
+		set_start_and_end(&var);
 		dist_buffer[i] = var.perp_dist;
-		draw_ver_line(game, &var, i, side);
+		draw_ver_line(game, &var, i, var.side);
 		i++;
 	}
 	draw_sprites(dist_buffer, game->sprites, game->player, game->win);

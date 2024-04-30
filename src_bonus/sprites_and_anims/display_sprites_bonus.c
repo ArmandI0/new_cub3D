@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_sprites_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/23 14:34:42 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/29 18:36:02 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	sort_sprites(int *sprites_dist, int *sprites_order, int nb_sprites)
 {
 	int	i;
 	int	j;
-	int tmp;
-	int tmp2;
+	int	tmp;
+	int	tmp2;
 
 	i = 0;
 	j = 0;
@@ -38,14 +38,14 @@ static void	sort_sprites(int *sprites_dist, int *sprites_order, int nb_sprites)
 		}
 		j = i + 1;
 		i++;
-	}	
+	}
 }
 
-static int *get_sprite_order(t_sprites sprite, t_player *p)
+static int	*get_sprite_order(t_sprites sprite, t_player *p)
 {
 	int	i;
-	int *sprite_order;
-	int *sprite_dist;
+	int	*sprite_order;
+	int	*sprite_dist;
 
 	sprite_order = ft_calloc(sprite.nb_sprites, sizeof(int));
 	if (!sprite_order)
@@ -60,7 +60,9 @@ static int *get_sprite_order(t_sprites sprite, t_player *p)
 	while (i < sprite.nb_sprites)
 	{
 		sprite_order[i] = i;
-		sprite_dist[i] = ((p->pos_x - sprite.pos_x[i]) * (p->pos_x - sprite.pos_x[i]) + (p->pos_y - sprite.pos_y[i]) * (p->pos_y - sprite.pos_y[i]));
+		sprite_dist[i] = ((p->pos_x - sprite.pos_x[i])
+				* (p->pos_x - sprite.pos_x[i]) + (p->pos_y - sprite.pos_y[i])
+				* (p->pos_y - sprite.pos_y[i]));
 		i++;
 	}
 	sort_sprites(sprite_dist, sprite_order, sprite.nb_sprites);
@@ -68,8 +70,8 @@ static int *get_sprite_order(t_sprites sprite, t_player *p)
 	return (sprite_order);
 }
 
-static void	loop_put_pixel_sprite(t_coord_sprite_screen *s, double dist_bufr[WIDTH],
-	t_window_settings *win, mlx_image_t *sprites_img)
+static void	loop_put_pixel_sprite(t_coord_sprite_screen *s,
+	double dist_bufr[WIDTH], t_window_settings *win, mlx_image_t *sprites_img)
 {
 	int	ver_line;
 	int	y_px;
@@ -82,8 +84,8 @@ static void	loop_put_pixel_sprite(t_coord_sprite_screen *s, double dist_bufr[WID
 		ver_line = 0;
 	while (ver_line < s->x_end && ver_line < WIDTH)
 	{
-        tex_x = (int)((ver_line - s->x_start) * sprites_img->width / s->w);
-       	if (s->matrix.y > 0 && s->matrix.y < dist_bufr[ver_line])
+		tex_x = (int)((ver_line - s->x_start) * sprites_img->width / s->w);
+		if (s->matrix.y > 0 && s->matrix.y < dist_bufr[ver_line])
 		{
 			y_px = s->y_start - 1;
 			while (++y_px < s->y_end)
@@ -95,21 +97,20 @@ static void	loop_put_pixel_sprite(t_coord_sprite_screen *s, double dist_bufr[WID
 			}
 		}
 		ver_line++;
-    }
+	}
 }
 
-t_bool draw_sprites(double dist_bufr[WIDTH], t_sprites sprites, t_player *p,
-	t_window_settings *win)
+t_bool	draw_sprites(double dist_bufr[WIDTH], t_sprites sprites,
+	t_player *p, t_window_settings *win)
 {
-	int 					i;
-	int 					*order;
+	int						i;
+	int						*order;
 	t_coord_sprite_screen	*s;
 
 	order = get_sprite_order(sprites, p);
 	if (!order)
 		return (FALSE);
 	i = 0;
-	
 	while (i < sprites.nb_sprites)
 	{
 		if (sprites.pos_x[order[i]] >= 0 && sprites.pos_y[order[i]] >= 0)
@@ -121,7 +122,7 @@ t_bool draw_sprites(double dist_bufr[WIDTH], t_sprites sprites, t_player *p,
 			get_pos_vert_sprite(s, s->matrix);
 			get_pos_horiz_sprite(s, s->matrix);
 			loop_put_pixel_sprite(s, dist_bufr, win, sprites.img[0]);
-			free (s);			
+			free (s);
 		}
 		i++;
 	}

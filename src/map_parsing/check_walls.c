@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/09 14:35:18 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:59:57 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_bool	check_if_missing_wall(char **map)
 	return (FALSE);
 }
 
-t_bool		check_walls(t_params *game)
+t_bool	check_walls(t_params *game)
 {
 	char	**map;
 	int		nb_lines;

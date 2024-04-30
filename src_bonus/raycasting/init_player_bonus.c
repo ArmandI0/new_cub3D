@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:06 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:52:12 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/29 18:39:11 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
 
 static t_player	*set_orientation(double dir_x, double dir_y,
-				double plane_x , double plane_y)
+				double plane_x, double plane_y)
 {
 	t_player	*new_player;
 
@@ -47,5 +47,3 @@ t_player	*init_new_players(t_param_type direction, double x, double y)
 	}
 	return (new_player);
 }
-
-

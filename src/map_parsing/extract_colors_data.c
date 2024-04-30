@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_colors_data.c                              :+:      :+:    :+:   */
+/*   extract_colors_data_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/18 16:25:36 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ static t_bool	look_for_double_param(t_list *color_str, t_param_type p_type)
 	return (FALSE);
 }
 
-/*
-Record the path of default textures in the game parameters if there is no path found in the .cub.
-Record first "texture_x" and then replace 'x' by the good number.
-*/
 static void	put_color_default_if_null(t_params *game, t_list *color_str,
 		t_param_type color)
 {
@@ -59,11 +55,9 @@ t_errors	extract_colors(t_params *game, t_list *head)
 	if (look_for_double_param(floor, PARAM_F) == TRUE
 		|| look_for_double_param(ceiling, PARAM_C) == TRUE)
 		return (ER_INVALID_MAP_DOUBLE);
- 	put_color_default_if_null(game, floor, PARAM_F);
- 	put_color_default_if_null(game, ceiling, PARAM_C);
-	ft_printf_fd(1, "ceiling color game : %d\n", game->ceiling_color);
+	put_color_default_if_null(game, floor, PARAM_F);
+	put_color_default_if_null(game, ceiling, PARAM_C);
 	r_value = extract_rgb_str(game, floor, " \n", PARAM_F);
-	ft_printf_fd(1, "floor color game : %d\n", game->floor_color);
 	if (r_value != 0)
 		return (r_value);
 	r_value = extract_rgb_str(game, ceiling, " \n", PARAM_C);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:12:00 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/24 14:48:21 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:58:51 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,17 @@ static void	rotation_key(mlx_key_data_t keydata, void *param)
 		p->right_key = TRUE;
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
 		p->right_key = FALSE;
-	//	rotation(p, SENSIVITY);
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		p->left_key = TRUE;
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
 		p->left_key = FALSE;
-	//	rotation(p, -SENSIVITY);
 }
+
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_params	*p;
 
 	p = param;
-	if (keydata.key == MLX_KEY_P)
-		printf("pos x : %f\npos y : %f\n", p->player->pos_x, p->player->pos_y);
 	if (keydata.key == MLX_KEY_E && keydata.action == MLX_PRESS)
 		manage_door(p);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)

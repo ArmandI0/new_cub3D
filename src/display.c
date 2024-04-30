@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/21 17:05:01 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:07:05 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	display_all(t_params *game)
 {
 	if (raycasting(game, game->win, game->player) == FALSE)
-		exit_fct(game);
+		print_err_free_exit(game, ER_DEFAULT);
 }

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   init_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:43:06 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/15 21:27:31 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static t_player	*set_orientation(double dir_x, double dir_y,
-				double plane_x , double plane_y)
+				double plane_x, double plane_y)
 {
 	t_player	*new_player;
 
@@ -37,9 +37,9 @@ t_player	*init_new_players(t_param_type direction, double x, double y)
 	else if (direction == PARAM_SO)
 		new_player = set_orientation(0, 1, -0.66, 0);
 	else if (direction == PARAM_WE)
-		new_player = set_orientation(-1, 0, 0, 0.66);
+		new_player = set_orientation(-1, 0, 0, -0.66);
 	else if (direction == PARAM_EA)
-		new_player = set_orientation(1, 0, 0, -0.66);
+		new_player = set_orientation(1, 0, 0, 0.66);
 	if (new_player != NULL)
 	{
 		new_player->pos_x = x;
@@ -47,5 +47,3 @@ t_player	*init_new_players(t_param_type direction, double x, double y)
 	}
 	return (new_player);
 }
-
-

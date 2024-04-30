@@ -6,11 +6,18 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:16:32 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/23 17:12:44 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 17:12:08 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
+
+void	print_err_free_exit(t_params *game, t_errors error)
+{
+	print_error(error);
+	free_game(game);
+	exit (EXIT_FAILURE);
+}
 
 static void	print_error2(t_errors error)
 {
@@ -23,7 +30,13 @@ static void	print_error2(t_errors error)
 	else if (error == ER_MISSING_WALLS)
 		ft_printf_fd(2, "Invalid map : There are missing walls");
 	else if (error == ER_INVALID_MAP_NO_PATH)
-		ft_printf_fd(2, "Invalid map : Texture path missing");	
+		ft_printf_fd(2, "Invalid map : Texture path missing");
+	else if (error == ER_LOAD_PNG)
+		ft_printf_fd(2, "Missing PNG : impossible to load png");
+	else if (error == ER_NB_SPRITES)
+		ft_printf_fd(2, "Invalid map : no sprite on the map (\"X\")");
+	else if (error == ER_DEFAULT)
+		ft_printf_fd(2, "System error");
 }
 
 void	print_error(t_errors error)

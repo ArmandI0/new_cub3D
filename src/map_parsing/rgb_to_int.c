@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_to_int.c                                       :+:      :+:    :+:   */
+/*   rgb_to_int_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/18 16:28:46 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	atoi_rgb(int rgb[3], char **split_rgb)
 {
-		rgb[0] = ft_atoi(split_rgb[0]);
-		rgb[1] = ft_atoi(split_rgb[1]);
-		rgb[2] = ft_atoi(split_rgb[2]);
+	rgb[0] = ft_atoi(split_rgb[0]);
+	rgb[1] = ft_atoi(split_rgb[1]);
+	rgb[2] = ft_atoi(split_rgb[2]);
 }
 
 static int	put_split_rgb_to_int(int rgb[3], char **split_rgb)
@@ -79,7 +79,7 @@ t_errors	extract_rgb_str(t_params *game, t_list *color,
 		if (rgb == NULL || rgb[0] == 0)
 			return (ER_INVALID_MAP_FILE);
 		if ((p_type == PARAM_F && rgb[0] != 'F')
-			|| (p_type == PARAM_C &&  rgb[0] != 'C'))
+			|| (p_type == PARAM_C && rgb[0] != 'C'))
 		{
 			free(rgb);
 			return (ER_INVALID_MAP_FILE);

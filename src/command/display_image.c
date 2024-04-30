@@ -6,11 +6,11 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:30:31 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:09:16 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:52:48 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D_bonus.h"
+#include "../../includes/cub3D.h"
 
 static void	set_move(t_params *game)
 {
@@ -44,7 +44,6 @@ void	move_player(void *params)
 	{
 		start_time = get_current_time();
 		set_move(game);
-		display_hands(game);
 	}
 }
 
@@ -63,9 +62,7 @@ void	display_game(void *params)
 	else
 	{
 		start_time = get_current_time();
-		display_minimap(game);
 		if (raycasting(game, game->win, game->player) == FALSE)
 			print_err_free_exit(game, ER_DEFAULT);
-		display_infos(game);
 	}
 }

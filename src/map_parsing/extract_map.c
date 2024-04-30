@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/09 14:23:59 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:00:23 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,37 @@ t_bool	is_line_empty(t_list *last)
 	return (TRUE);
 }
 
-static void del_empty_lines_start(t_params *game)
+static void	del_empty_lines_start(t_params *game)
 {
-	t_list  *tmp;
-	t_list  *head;
+	t_list	*tmp;
+	t_list	*head;
 
 	head = game->head_list_lines;
 	while (head != NULL && is_line_empty(head) == TRUE)
 	{
 		tmp = head;
- 		head = head->next;
+		head = head->next;
 		del_el_list(tmp, game);
 	}
 }
 
-static void del_empty_lines_end(t_params *game)
+static void	del_empty_lines_end(t_params *game)
 {
-	t_list  *last;
-	t_list  *tmp;
+	t_list	*last;
+	t_list	*tmp;
 
 	last = ft_lstlast(game->head_list_lines);
 	while (last != NULL && is_line_empty(last) == TRUE)
 	{
 		tmp = last;
- 		last = last->prev;
+		last = last->prev;
 		del_el_list(tmp, game);
 	}
 }
 
-static t_bool are_map_lines_valid(t_list *head)
+static t_bool	are_map_lines_valid(t_list *head)
 {
-	t_list  *element;
+	t_list	*element;
 	int		i;
 
 	i = 0;
@@ -72,8 +72,8 @@ static t_bool are_map_lines_valid(t_list *head)
 				return (FALSE);
 			i++;
 		}
- 		element = element->next;
-	}	
+		element = element->next;
+	}
 	return (TRUE);
 }
 

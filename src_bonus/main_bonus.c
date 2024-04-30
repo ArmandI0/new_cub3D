@@ -6,31 +6,25 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/25 21:49:45 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 18:27:31 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D_bonus.h"
 
-mlx_image_t	*set_img(t_window_settings *set)
+mlx_image_t	*set_img(t_window_settings *set, t_params *game)
 {
-	mlx_image_t *img;
+	mlx_image_t	*img;
 
 	img = mlx_new_image(set->window, set->window->width, set->window->height);
 	if (!img || (mlx_image_to_window(set->window, img, 0, 0) < 0))
-		ft_error(set);
+		print_err_free_exit(game, ER_DEFAULT);
 	else
 	{
 		mlx_set_instance_depth(img->instances, 0);
 		return (img);
 	}
 	return (NULL);
-}
-
-void	ft_error(t_window_settings *set)
-{
-	free(set);
-	exit(EXIT_FAILURE);
 }
 
 static void	set_map_w_and_h(t_params *game)
@@ -78,15 +72,18 @@ static t_params	*init_game(const char **argv)
 		exit(1);
 	win = ft_calloc(1, sizeof(t_window_settings));
 	if (win == NULL)
-		exit_fct(game);
+		print_err_free_exit(game, ER_DEFAULT);
 	game->win = win;
 	map_file_parsing(game, argv[1]);
+	game->sprites.nb_sprites = count_nb_sprites(game->map->map2d);
+	if (game->sprites.nb_sprites == 0)
+		print_err_free_exit(game, ER_NB_SPRITES);
 	set_map_w_and_h(game);
 	get_coord_start(game, game->map->map2d);
 	win->window = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!win->window)
-		exit_fct(game);
-	win->img = set_img(win);
+		print_err_free_exit(game, ER_DEFAULT);
+	win->img = set_img(win, game);
 	game->player = init_new_players(game->start_p.dir, game->start_p.x,
 			game->start_p.y);
 	game->time_start = get_current_time();
@@ -100,11 +97,9 @@ int	main(int argc, const char **argv)
 	check_args(argc, argv);
 	game = init_game(argv);
 	if (load_images(game) == FALSE)
-		exit_fct(game);
-	//init_times_displays(game);
-	//display_welcome(game->win->window, game);
+		print_err_free_exit(game, ER_LOAD_PNG);
 	init_command(game);
-	display_hands(game);
+	init_display_anims(game);
 	mlx_loop(game->win->window);
 	mlx_resize_hook(game->win->window, &resize_mlx, game->win);
 	mlx_close_hook(game->win->window, &close_fct, game->win);

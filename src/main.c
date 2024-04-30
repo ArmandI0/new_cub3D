@@ -3,63 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/22 15:29:44 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:08:21 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-mlx_image_t	*set_img(t_window_settings *set)
+mlx_image_t	*set_img(t_window_settings *set, t_params *game)
 {
-	mlx_image_t *img;
+	mlx_image_t	*img;
 
 	img = mlx_new_image(set->window, set->window->width, set->window->height);
 	if (!img || (mlx_image_to_window(set->window, img, 0, 0) < 0))
-		ft_error(set);
+		print_err_free_exit(game, ER_DEFAULT);
 	else
 	{
 		mlx_set_instance_depth(img->instances, 0);
 		return (img);
 	}
 	return (NULL);
-}
-
-/* void	print_map(t_list *head)
-{
-	t_list	*next;
-
-	ft_printf_fd(1, "PRINT MAP :\n");
-	if (head != NULL)
-	{
-		next = head;
-		while (next != NULL)
-		{
-			next = head->next;
-			ft_printf_fd(1, "%s", head->content);
-			head = next;
-		}
-	}
-}
-
-void	print_map_tab(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		ft_printf_fd(1, "%s\n", map[i]);
-		i++;
-	}
-} */
-
-void	ft_error(t_window_settings *set)
-{
-	free(set);
-	exit(EXIT_FAILURE);
 }
 
 static void	set_map_w_and_h(t_params *game)
@@ -107,15 +72,15 @@ static t_params	*init_game(const char **argv)
 		exit(1);
 	win = ft_calloc(1, sizeof(t_window_settings));
 	if (win == NULL)
-		exit_fct(game);
+		print_err_free_exit(game, ER_DEFAULT);
 	game->win = win;
 	map_file_parsing(game, argv[1]);
 	set_map_w_and_h(game);
 	get_coord_start(game, game->map->map2d);
 	win->window = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!win->window)
-		exit_fct(game);
-	win->img = set_img(win);
+		print_err_free_exit(game, ER_DEFAULT);
+	win->img = set_img(win, game);
 	game->player = init_new_players(game->start_p.dir, game->start_p.x,
 			game->start_p.y);
 	return (game);
@@ -128,13 +93,11 @@ int	main(int argc, const char **argv)
 	check_args(argc, argv);
 	game = init_game(argv);
 	if (load_images(game) == FALSE)
-		exit_fct(game);
-	display_all(game);
+		print_err_free_exit(game, ER_LOAD_PNG);
 	init_command(game);
 	mlx_loop(game->win->window);
 	mlx_resize_hook(game->win->window, &resize_mlx, game->win);
 	mlx_close_hook(game->win->window, &close_fct, game->win);
-	//mlx_terminate(game->win->window);
 	free_game(game);
 	return (0);
 }

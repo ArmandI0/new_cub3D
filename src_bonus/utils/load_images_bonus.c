@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_sprites.c                                  :+:      :+:    :+:   */
+/*   load_images_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/19 16:04:34 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:11:08 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../includes/cub3D_bonus.h"
 
-void	draw_sprites(double	dist_buffer[WIDTH], t_sprites sprites, t_player *p)
+void	del_txt_tmp(mlx_texture_t **tmp, int nb)
 {
-	(void)dist_buffer;
-	(void)sprites;
-	(void)p;
-/* 	int	i;
-	
+	int	i;
+
 	i = 0;
-	while (i < sprites.nb_sprites)
+	while (i < nb)
 	{
-		spriteOrder[i] = i;
-		sprite_dist[i] = ((p->pos_x - sprite[i].x) * (p->pos_x - sprite[i].x) + (p->pos_y - sprite[i].y) * (p->pos_y - sprite[i].y));
+		if (tmp[i])
+			mlx_delete_texture(tmp[i]);
 		i++;
-	} */
+	}
+}
+
+t_bool	load_images(t_params *game)
+{
+	if (load_textures(game) == FALSE)
+		return (FALSE);
+	if (load_anim(game) == FALSE)
+		return (FALSE);
+	if (load_sprites(game) == FALSE)
+		return (FALSE);
+	if (load_texts(game) == FALSE)
+		return (FALSE);
+	return (TRUE);
 }

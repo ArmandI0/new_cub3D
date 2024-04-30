@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_fct.c                                         :+:      :+:    :+:   */
+/*   load_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 18:56:50 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/13 20:24:07 by aranger          ###   ########.fr       */
+/*   Created: 2024/04/04 13:26:12 by aranger           #+#    #+#             */
+/*   Updated: 2024/04/29 20:17:24 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	exit_fct(t_params *param)
+void	del_txt_tmp(mlx_texture_t **tmp, int nb)
 {
-	if (param != NULL)
-		free_game(param);
-	exit(1);
+	int	i;
+
+	i = 0;
+	while (i < nb)
+	{
+		if (tmp[i])
+			mlx_delete_texture(tmp[i]);
+		i++;
+	}
+}
+
+t_bool	load_images(t_params *game)
+{
+	if (load_textures(game) == FALSE)
+		return (FALSE);
+	return (TRUE);
 }

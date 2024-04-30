@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/19 14:43:31 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:06:30 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	free_path_textures(t_params *game)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (game->path_texture[i] != NULL)
 			free(game->path_texture[i]);
@@ -56,28 +56,26 @@ void	free_path_textures(t_params *game)
 
 void	free_game(t_params *game)
 {
-<<<<<<< HEAD
-	free_img_anim(game);
-	free_img_sprites(game);
-=======
->>>>>>> main
-	free_textures(game);
-	if (game->win != NULL)
+	if (game)
 	{
-		if (game->win->window != NULL)
-			mlx_terminate(game->win->window);
-		free(game->win);
+		free_textures(game);
+		if (game->win != NULL)
+		{
+			if (game->win->window != NULL)
+				mlx_terminate(game->win->window);
+			free(game->win);
+		}
+		free_lines_list(game->head_list_lines);
+		free_path_textures(game);
+		if (game->map != NULL)
+		{
+			free_split(game->map->map2d);
+			free(game->map);
+		}
+		if (game->player != NULL)
+			free(game->player);
+		free(game);
 	}
-	free_lines_list(game->head_list_lines);
-	free_path_textures(game);
-	if (game->map != NULL)
-	{
-		free_split(game->map->map2d);
-		free(game->map);
-	}
-	if (game->player != NULL)
-		free(game->player);
-	free(game);
 }
 
 void	free_textures(t_params *game)
@@ -90,4 +88,6 @@ void	free_textures(t_params *game)
 		mlx_delete_texture(game->texture[2]);
 	if (game->texture[3] != NULL)
 		mlx_delete_texture(game->texture[3]);
+	if (game->texture[4] != NULL)
+		mlx_delete_texture(game->texture[4]);
 }

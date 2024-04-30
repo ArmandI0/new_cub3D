@@ -6,7 +6,7 @@
 /*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/25 21:32:17 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:10:51 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_img_anim(t_params *game)
 	if (game->texts[3] != NULL)
 		mlx_delete_image(game->win->window, game->texts[3]);
 	if (game->texts[4] != NULL)
-		mlx_delete_image(game->win->window, game->texts[4]);		
+		mlx_delete_image(game->win->window, game->texts[4]);
 }
 
 void	free_img_sprites(t_params *game)
