@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nledent <nledent@student.42.fr>            +#+  +:+       +#+         #
+#    By: aranger <aranger@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 17:54:43 by nledent           #+#    #+#              #
-#    Updated: 2024/04/29 20:10:03 by nledent          ###   ########.fr        #
+#    Updated: 2024/04/30 12:45:02 by aranger          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,9 @@ HEADERS			= -I ./include -I $(LIBMLX)/include
 
 #-SRC-#
 
-SRCS			= 	\
-
 SRC				= $(addprefix src/, $(SRCS))
 OBJS			= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 D_OBJS			= mkdir -p $(@D)
-
-#-BONUS-#
 
 SRCS		=	\
 					main.c \
@@ -61,10 +57,11 @@ SRCS		=	\
 					raycasting/raycasting.c \
 					raycasting/raycasting2.c \
 					command/keyboard.c \
-					command/mouse.c \
 					command/command.c \
 					command/move_player.c \
 					command/display_image.c \
+
+#-BONUS-#
 
 SRCS_BONUS		=	\
 					main_bonus.c \

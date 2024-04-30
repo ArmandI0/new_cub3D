@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_to_int_bonus.c                                 :+:      :+:    :+:   */
+/*   rgb_to_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/30 15:57:20 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static void	atoi_rgb(int rgb[3], char **split_rgb)
+static void	atoi_rgb(int rgb[3], char **split_rgb, t_params *game)
 {
 	rgb[0] = ft_atoi(split_rgb[0]);
+	if (rgb[0] < 0 || rgb[0] > 255)
+		print_err_free_exit(game, ER_INVALID_MAP_NULL_COLOR);
 	rgb[1] = ft_atoi(split_rgb[1]);
+	if (rgb[1] < 0 || rgb[1] > 255)
+		print_err_free_exit(game, ER_INVALID_MAP_NULL_COLOR);
 	rgb[2] = ft_atoi(split_rgb[2]);
+	if (rgb[2] < 0 || rgb[2] > 255)
+		print_err_free_exit(game, ER_INVALID_MAP_NULL_COLOR);
 }
 
 static int	put_split_rgb_to_int(int rgb[3], char **split_rgb)
@@ -40,7 +46,7 @@ static int	put_split_rgb_to_int(int rgb[3], char **split_rgb)
 	return (color);
 }
 
-static int	str_rgb_to_int(char *rgb_str, char *set)
+static int	str_rgb_to_int(char *rgb_str, char *set, t_params *game)
 {
 	int		color;
 	int		rgb[3];
@@ -57,7 +63,7 @@ static int	str_rgb_to_int(char *rgb_str, char *set)
 		i++;
 	if (i == 3)
 	{
-		atoi_rgb(rgb, split_rgb);
+		atoi_rgb(rgb, split_rgb, game);
 		color = put_split_rgb_to_int(rgb, split_rgb);
 	}
 	else
@@ -86,9 +92,9 @@ t_errors	extract_rgb_str(t_params *game, t_list *color,
 		}
 		rgb[0] = ' ';
 		if (p_type == PARAM_C)
-			game->ceiling_color = str_rgb_to_int(rgb, set);
+			game->ceiling_color = str_rgb_to_int(rgb, set, game);
 		else if (p_type == PARAM_F)
-			game->floor_color = str_rgb_to_int(rgb, set);
+			game->floor_color = str_rgb_to_int(rgb, set, game);
 		del_el_list(color, game);
 		free (rgb);
 		if (game->ceiling_color == -1 || game->floor_color == -1)

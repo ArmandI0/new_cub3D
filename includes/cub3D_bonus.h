@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/29 19:46:55 by nledent          ###   ########.fr       */
+/*   Updated: 2024/04/30 12:51:49 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,13 +212,8 @@ void		resize_mlx(int32_t width, int32_t height, void *param);
 void		put_pixel(mlx_image_t *img, uint32_t x,
 				uint32_t y, int color);
 void		close_fct(void *param);
-t_map		*init_argument(void);
 void		display_minimap(t_params *p);
-void		ft_error(t_window_settings *set);
-void		print_player(t_params *p);
 t_player	*init_new_players(t_param_type direction, double x, double y);
-void		display_hands(t_params *game);
-void		display_sprites(t_params *game);
 void		del_txt_tmp(mlx_texture_t **tmp, int nb);
 void		draw_ver_line(t_params *game, t_var_raycasting *var,
 				int x_position, int side);
@@ -251,16 +246,13 @@ void		print_error(t_errors error);
 void		del_el_list(t_list *element, t_params *game);
 void		cursor_fct(double xpos, double ypos, void *param);
 void		init_command(t_params *game);
-void		exit_fct(t_params *param);
 void		rotation(t_params *p, double step);
-t_bool		raycasting_1(t_params *game, t_window_settings *set, t_player *p);
 mlx_image_t	*set_img(t_window_settings *set, t_params *game);
 int			rgb_to_int(unsigned char red, unsigned char green,
 				unsigned char blue);
 int			get_color_px_txt(uint32_t x, uint32_t y, mlx_texture_t *txt);
 uint32_t	convert_color(unsigned int color);
 int			get_color_px_img(uint32_t x, uint32_t y, mlx_image_t *img);
-void		init_times_displays(t_params *game);
 size_t		get_current_time(void);
 void		display_game(void *params);
 void		manage_door(t_params *p);
@@ -272,8 +264,5 @@ void		print_err_free_exit(t_params *game, t_errors error);
 void		display_infos(t_params *game);
 void		display_all(t_params *game);
 void		display_hands(t_params *game);
-void		display_sprites(t_params *game);
-void		display_welcome(mlx_t *mlx, t_params *game);
-void		display_success(mlx_t *mlx, t_params *game);
 
 #endif
