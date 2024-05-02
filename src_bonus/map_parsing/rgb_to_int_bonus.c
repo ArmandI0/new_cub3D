@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/30 16:26:53 by aranger          ###   ########.fr       */
+/*   Updated: 2024/05/02 15:50:14 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	put_split_rgb_to_int(int rgb[3], char **split_rgb)
 	char	*blue;
 	int		color;
 
-	color = -1;
+	color = -2;
 	red = ft_itoa(rgb[0]);
 	green = ft_itoa(rgb[1]);
 	blue = ft_itoa(rgb[2]);
@@ -53,7 +53,7 @@ static int	str_rgb_to_int(char *rgb_str, char *set)
 	if (rgb_trim == NULL || rgb_trim[0] == 0)
 		free(rgb_trim);
 	if (rgb_trim == NULL || rgb_trim[0] == 0)
-		return (-1);
+		return (-2);
 	split_rgb = ft_split(rgb_trim, ',');
 	while (split_rgb[i] != NULL)
 		i++;
@@ -63,7 +63,7 @@ static int	str_rgb_to_int(char *rgb_str, char *set)
 		color = put_split_rgb_to_int(rgb, split_rgb);
 	}
 	else
-		color = -1;
+		color = -2;
 	free_split(split_rgb);
 	free(rgb_trim);
 	return (convert_color(color));
@@ -92,7 +92,7 @@ t_errors	extract_rgb_str(t_params *game, t_list *color,
 			game->floor_color = str_rgb_to_int(rgb, set);
 		del_el_list(color, game);
 		free (rgb);
-		if (game->ceiling_color == -1 || game->floor_color == -1)
+		if (game->ceiling_color == -2 || game->floor_color == -2)
 			return (ER_INVALID_MAP_FILE);
 	}
 	return (0);
