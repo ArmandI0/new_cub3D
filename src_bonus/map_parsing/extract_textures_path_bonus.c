@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   extract_textures_path_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/29 20:02:11 by nledent          ###   ########.fr       */
+/*   Updated: 2024/05/21 21:35:22 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D_bonus.h"
 
-static t_bool	look_for_double_param(t_list *texture_path[5])
+static t_errors	look_for_double_param(t_list *texture_path[5])
 {
 	int		i;
 	t_list	*double_param;
@@ -32,10 +32,10 @@ static t_bool	look_for_double_param(t_list *texture_path[5])
 		double_param = get_line_with_str(texture_path[i]->next, str);
 		free(str);
 		if (double_param != NULL)
-			return (TRUE);
+			return (ER_INVALID_MAP_DOUBLE);
 		i++;
 	}
-	return (FALSE);
+	return (NO_ERR);
 }
 
 static t_errors	r_err_if_null(t_list *texture_path[5])
@@ -74,7 +74,7 @@ static int	put_path_if_not_null(t_params *game, t_list *texture_path[4],
 		}
 		ft_memset(path, ' ', 2);
 		game->path_texture[i] = ft_strtrim(path, set);
-		del_el_list(texture_path[i], game);
+		put_line_to_nl(texture_path[i], game);
 		free (path);
 		if (game->path_texture[i] == NULL || (game->path_texture[i])[0] == 0)
 			return (ER_INVALID_MAP_NULL_PATH);
@@ -110,8 +110,9 @@ t_errors	extract_path_textures(t_params *game, t_list *head)
 	texture_path[PARAM_EA] = get_line_with_str(head, "EA");
 	texture_path[PARAM_WE] = get_line_with_str(head, "WE");
 	texture_path[PARAM_DOOR] = get_line_with_str(head, "D");
-	if (look_for_double_param(texture_path) == TRUE)
-		return (ER_INVALID_MAP_DOUBLE);
+	r_value = look_for_double_param(texture_path);
+	if (r_value != NO_ERR)
+		return (r_value);
 	r_value = r_err_if_null(texture_path);
 	if (r_value != NO_ERR)
 		return (r_value);

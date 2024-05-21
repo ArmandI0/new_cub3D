@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:56:50 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/22 15:55:01 by aranger          ###   ########.fr       */
+/*   Updated: 2024/05/21 21:20:25 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,16 @@ void	del_el_list(t_list *element, t_params *game)
 	else
 		game->head_list_lines = NULL;
 	free_el_list(element);
+}
+
+void	put_line_to_nl(t_list *element, t_params *game)
+{
+	if (element != NULL && element->content != NULL)
+	{
+		free (element->content);
+		element->content = NULL;
+		element->content = ft_strdup("\n");
+		if (element->content == NULL)
+			print_err_free_exit(game, ER_DEFAULT);
+	}
 }

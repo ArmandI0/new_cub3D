@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/05/21 21:29:40 by aranger          ###   ########.fr       */
+/*   Updated: 2024/05/21 21:16:20 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef enum cb_errors
 	ER_LOAD_PNG,
 	ER_NB_SPRITES,
 	ER_DEFAULT,
-	ER_COLOR,
 }			t_errors;
 
 typedef enum cb_param_type
@@ -159,6 +158,7 @@ t_bool		load_sprites(t_params *game);
 t_bool		load_textures(t_params *game);
 t_bool		load_texts(t_params *game);
 
+
 /* EXEC FUNCTIONS */
 void		my_keyhook(mlx_key_data_t keydata, void *param);
 void		resize_mlx(int32_t width, int32_t height, void *param);
@@ -206,6 +206,7 @@ void		display_game(void *params);
 void		move_player(void *params);
 void		translation(t_params *p, double step, t_bool tr);
 void		print_err_free_exit(t_params *game, t_errors error);
+void		put_line_to_nl(t_list *element, t_params *game);
 
 /* DISPLAY FUNCTIONS */
 void		display_all(t_params *game);

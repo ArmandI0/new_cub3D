@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/05/21 21:33:34 by aranger          ###   ########.fr       */
+/*   Updated: 2024/04/29 19:50:56 by nledent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	map_file_parsing(t_params *game, const char *filepath)
 		print_err_free_exit(game, error);
 	error = extract_colors(game, game->head_list_lines);
 	if (error != NO_ERR)
-		print_err_free_exit(game, ER_COLOR);
+		print_err_free_exit(game, error);
 	error = extract_map(game);
 	if (error != NO_ERR)
 		print_err_free_exit(game, error);
