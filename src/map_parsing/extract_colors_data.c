@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/30 16:10:15 by aranger          ###   ########.fr       */
+/*   Updated: 2024/05/21 21:29:20 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ static t_bool	look_for_double_param(t_list *color_str, t_param_type p_type)
 	return (FALSE);
 }
 
-static void	exit_if_path_null(t_params *game, t_list *color_str,
-		t_param_type color)
+static void	exit_if_path_null(t_params *game, t_list *color_str)
 {
-	color++;
 	if (color_str == NULL)
 	{
 		print_err_free_exit(game, ER_INVALID_MAP_NULL_PATH);
@@ -53,13 +51,15 @@ t_errors	extract_colors(t_params *game, t_list *head)
 	if (look_for_double_param(floor, PARAM_F) == TRUE
 		|| look_for_double_param(ceiling, PARAM_C) == TRUE)
 		return (ER_INVALID_MAP_DOUBLE);
-	exit_if_path_null(game, floor, PARAM_F);
-	exit_if_path_null(game, ceiling, PARAM_C);
+	exit_if_path_null(game, floor);
+	exit_if_path_null(game, ceiling);
 	r_value = extract_rgb_str_f(game, floor, " \n");
 	if (r_value != 0)
 		return (r_value);
 	r_value = extract_rgb_str_c(game, ceiling, " \n");
 	if (r_value != 0)
 		return (r_value);
+	if (game->floor_color == game->ceiling_color)
+		print_err_free_exit(game, ER_COLOR);
 	return (0);
 }

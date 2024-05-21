@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/04/30 12:51:49 by aranger          ###   ########.fr       */
+/*   Updated: 2024/05/21 21:26:49 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef enum cb_errors
 	ER_LOAD_PNG,
 	ER_NB_SPRITES,
 	ER_DEFAULT,
+	ER_COLOR,
 }			t_errors;
 
 typedef enum cb_param_type
@@ -178,8 +179,8 @@ t_bool		extract_file_into_list(t_params *game, const char *filepath);
 t_errors	extract_path_textures(t_params *game, t_list *head);
 t_errors	extract_colors(t_params *game, t_list *head);
 t_list		*get_line_with_str(t_list *head, char *str);
-t_errors	extract_rgb_str(t_params *game, t_list *color,
-				char *set, t_param_type p_type);
+t_errors	extract_rgb_str_c(t_params *game, t_list *color, char *set);
+t_errors	extract_rgb_str_f(t_params *game, t_list *color, char *set);
 t_errors	extract_map(t_params *game);
 t_bool		is_line_empty(t_list *last);
 t_bool		map_to_tab(t_params *game, t_list *head);

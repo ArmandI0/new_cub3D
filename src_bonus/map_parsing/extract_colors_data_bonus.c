@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_colors_data_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/04/27 17:26:11 by nledent          ###   ########.fr       */
+/*   Updated: 2024/05/21 21:28:36 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,11 @@ static t_bool	look_for_double_param(t_list *color_str, t_param_type p_type)
 	return (FALSE);
 }
 
-static void	put_color_default_if_null(t_params *game, t_list *color_str,
-		t_param_type color)
+static void	exit_if_path_null(t_params *game, t_list *floor)
 {
-	if (color_str == NULL)
+	if (floor == NULL)
 	{
-		if (color == PARAM_F)
-			game->floor_color = convert_color(rgb_to_int(200, 150, 100));
-		else if (color == PARAM_C)
-			game->ceiling_color = convert_color(rgb_to_int(150, 200, 255));
+		print_err_free_exit(game, ER_INVALID_MAP_NULL_PATH);
 	}
 }
 
@@ -55,13 +51,15 @@ t_errors	extract_colors(t_params *game, t_list *head)
 	if (look_for_double_param(floor, PARAM_F) == TRUE
 		|| look_for_double_param(ceiling, PARAM_C) == TRUE)
 		return (ER_INVALID_MAP_DOUBLE);
-	put_color_default_if_null(game, floor, PARAM_F);
-	put_color_default_if_null(game, ceiling, PARAM_C);
-	r_value = extract_rgb_str(game, floor, " \n", PARAM_F);
+	exit_if_path_null(game, floor);
+	exit_if_path_null(game, ceiling);
+	r_value = extract_rgb_str_f(game, floor, " \n");
 	if (r_value != 0)
 		return (r_value);
-	r_value = extract_rgb_str(game, ceiling, " \n", PARAM_C);
+	r_value = extract_rgb_str_c(game, ceiling, " \n");
 	if (r_value != 0)
 		return (r_value);
+	if (game->floor_color == game->ceiling_color)
+		print_err_free_exit(game, ER_COLOR);
 	return (0);
 }
