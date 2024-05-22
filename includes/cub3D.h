@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/05/22 09:37:21 by aranger          ###   ########.fr       */
+/*   Updated: 2024/05/22 10:25:35 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ t_bool		load_images(t_params *game);
 t_bool		load_sprites(t_params *game);
 t_bool		load_textures(t_params *game);
 t_bool		load_texts(t_params *game);
-
 
 /* EXEC FUNCTIONS */
 void		my_keyhook(mlx_key_data_t keydata, void *param);

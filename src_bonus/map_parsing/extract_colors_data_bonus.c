@@ -6,7 +6,7 @@
 /*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/05/22 09:42:12 by aranger          ###   ########.fr       */
+/*   Updated: 2024/05/22 10:25:56 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static t_bool	look_for_double_param(t_list *color_str, t_param_type p_type)
 static void	exit_if_path_null(t_params *game, t_list *floor)
 {
 	if (floor == NULL)
-		print_err_free_exit(game, ER_INVALID_MAP_NULL_PATH);
-
+		print_err_free_exit(game, ER_COLOR);
 }
 
 t_errors	extract_colors(t_params *game, t_list *head)

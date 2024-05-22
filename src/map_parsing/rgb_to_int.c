@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_to_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@42angouleme.fr>           +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:55:29 by nledent           #+#    #+#             */
-/*   Updated: 2024/05/21 21:22:15 by nledent          ###   ########.fr       */
+/*   Updated: 2024/05/22 10:32:49 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ t_errors	extract_rgb_str_c(t_params *game, t_list *color, char *set)
 		if (rgb == NULL || rgb[0] == 0 || rgb[0] != 'C')
 		{
 			free(rgb);
-			return (ER_INVALID_MAP_FILE);
+			return (ER_COLOR);
 		}
 		rgb[0] = ' ';
 		game->ceiling_color = str_rgb_to_int(rgb, set);
 		put_line_to_nl(color, game);
 		free (rgb);
 		if (game->ceiling_color == -2)
-			return (ER_INVALID_MAP_FILE);
+			return (ER_COLOR);
 	}
 	return (0);
 }
@@ -110,14 +110,14 @@ t_errors	extract_rgb_str_f(t_params *game, t_list *color, char *set)
 		if (rgb == NULL || rgb[0] != 'F')
 		{
 			free(rgb);
-			return (ER_INVALID_MAP_FILE);
+			return (ER_COLOR);
 		}
 		rgb[0] = ' ';
 		game->floor_color = str_rgb_to_int(rgb, set);
 		put_line_to_nl(color, game);
 		free (rgb);
 		if (game->floor_color == -2)
-			return (ER_INVALID_MAP_FILE);
+			return (ER_COLOR);
 	}
 	return (0);
 }
