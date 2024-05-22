@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nledent <nledent@42angouleme.fr>           +#+  +:+       +#+        */
+/*   By: aranger <aranger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:40:47 by aranger           #+#    #+#             */
-/*   Updated: 2024/05/21 21:16:20 by nledent          ###   ########.fr       */
+/*   Updated: 2024/05/22 09:37:21 by aranger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef enum cb_errors
 	ER_LOAD_PNG,
 	ER_NB_SPRITES,
 	ER_DEFAULT,
+	ER_COLOR,
 }			t_errors;
 
 typedef enum cb_param_type
